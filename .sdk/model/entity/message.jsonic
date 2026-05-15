@@ -1,0 +1,123 @@
+# Entity: message
+
+main: kit: entity: message: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "content"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "max_token"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "message"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "metadata"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "model"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "role"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "stop_reason"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "stop_sequence"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "stream"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "system"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "temperature"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "top_k"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "top_p"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "usage"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "message"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/messages"
+          parts: [
+            "messages"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

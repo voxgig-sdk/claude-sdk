@@ -1,0 +1,81 @@
+{
+  "existing": {
+    "message": {
+      "MESSAGE00": {
+        "content": [],
+        "id": "MESSAGE00",
+        "max_token": "sa2",
+        "message": [],
+        "metadata": {},
+        "model": "sa5",
+        "role": "sa6",
+        "stop_reason": "sa7",
+        "stop_sequence": "sa8",
+        "stream": false,
+        "system": "saa",
+        "temperature": 171,
+        "top_k": "sac",
+        "top_p": 173,
+        "type": "sae",
+        "usage": {}
+      },
+      "MESSAGE01": {
+        "content": [],
+        "id": "MESSAGE01",
+        "max_token": "s142",
+        "message": [],
+        "metadata": {},
+        "model": "s145",
+        "role": "s146",
+        "stop_reason": "s147",
+        "stop_sequence": "s148",
+        "stream": false,
+        "system": "s14a",
+        "temperature": 331,
+        "top_k": "s14c",
+        "top_p": 333,
+        "type": "s14e",
+        "usage": {}
+      },
+      "MESSAGE02": {
+        "content": [],
+        "id": "MESSAGE02",
+        "max_token": "s1e2",
+        "message": [],
+        "metadata": {},
+        "model": "s1e5",
+        "role": "s1e6",
+        "stop_reason": "s1e7",
+        "stop_sequence": "s1e8",
+        "stream": false,
+        "system": "s1ea",
+        "temperature": 491,
+        "top_k": "s1ec",
+        "top_p": 493,
+        "type": "s1ee",
+        "usage": {}
+      }
+    }
+  },
+  "new": {
+    "message": {
+      "message_ref01": {
+        "content": [],
+        "max_token": "s282",
+        "message": [],
+        "metadata": {},
+        "model": "s285",
+        "role": "s286",
+        "stop_reason": "s287",
+        "stop_sequence": "s288",
+        "stream": false,
+        "system": "s28a",
+        "temperature": 651,
+        "top_k": "s28c",
+        "top_p": 653,
+        "type": "s28e",
+        "usage": {}
+      }
+    }
+  }
+}
