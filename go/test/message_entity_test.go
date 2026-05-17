@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/claude-sdk"
-	"github.com/voxgig-sdk/claude-sdk/core"
+	sdk "github.com/voxgig-sdk/claude-sdk/go"
+	"github.com/voxgig-sdk/claude-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/claude-sdk/go/utility/struct"
 )
 
 func TestMessageEntity(t *testing.T) {

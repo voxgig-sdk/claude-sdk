@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/claude-sdk/core"
+	"github.com/voxgig-sdk/claude-sdk/go/core"
 )
 
 type BaseFeature struct {

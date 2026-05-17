@@ -1,10 +1,10 @@
 package voxgigclaudesdk
 
 import (
-	"github.com/voxgig-sdk/claude-sdk/core"
-	"github.com/voxgig-sdk/claude-sdk/entity"
-	"github.com/voxgig-sdk/claude-sdk/feature"
-	_ "github.com/voxgig-sdk/claude-sdk/utility"
+	"github.com/voxgig-sdk/claude-sdk/go/core"
+	"github.com/voxgig-sdk/claude-sdk/go/entity"
+	"github.com/voxgig-sdk/claude-sdk/go/feature"
+	_ "github.com/voxgig-sdk/claude-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
