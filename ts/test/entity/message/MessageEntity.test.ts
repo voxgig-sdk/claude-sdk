@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'CLAUDE_TEST_MESSAGE_ENTID': idmap,
     'CLAUDE_TEST_LIVE': 'FALSE',
     'CLAUDE_TEST_EXPLAIN': 'FALSE',
-    'CLAUDE_APIKEY': 'NONE',
   })
 
   idmap = env['CLAUDE_TEST_MESSAGE_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new ClaudeSDK(merge([
       {
-        apikey: env.CLAUDE_APIKEY,
       },
       extra
     ]))

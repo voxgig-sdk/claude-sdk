@@ -1,9 +1,100 @@
 # Claude SDK
 
+Send prompts to Anthropic's Claude models (Opus, Sonnet, Haiku) over a RESTful HTTPS API
 
+> TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-Available for [Golang](go/) and [Go CLI](go-cli/) and [Go MCP server](go-mcp/) and [Lua](lua/) and [PHP](php/) and [Python](py/) and [Ruby](rb/) and [TypeScript](ts/).
+## About Claude API
 
+The Claude API is the RESTful HTTPS interface to Claude, the family of large language models built by [Anthropic](https://www.anthropic.com/). It lets applications send prompts and receive completions from the latest Claude models (Opus, Sonnet, Haiku) for chat, coding assistance, summarisation, tool use, and agent workflows.
+
+What you get from the API:
+
+- `POST /v1/messages` — send a conversation to a Claude model and receive a reply (streaming or non-streaming).
+- `POST /v1/messages/batches` — submit large volumes of message requests asynchronously at reduced cost.
+- `POST /v1/messages/count_tokens` — count tokens in a message before sending, to estimate cost and rate-limit impact.
+- `GET /v1/models` — list available Claude models and their metadata.
+- Beta surfaces for Files, Skills, Agents, Sessions and Environments are also exposed under `/v1/...` for building managed agents.
+
+All requests must go to `https://api.anthropic.com` and include an `x-api-key` header (or a Workload Identity Federation bearer token in `Authorization`), an `anthropic-version` header (for example `2023-06-01`), and `content-type: application/json`. Request bodies are capped at 32 MB for Messages and Token Counting, 256 MB for Message Batches, and 500 MB for Files.
+
+The API enforces per-organization rate limits (requests per minute and tokens per minute) and monthly spend limits that scale with usage tier; both are visible in the Console. Availability is global but restricted to [supported regions](https://docs.anthropic.com/en/api/supported-regions).
+
+## Try it
+
+**TypeScript**
+```bash
+npm install claude
+```
+
+**Python**
+```bash
+pip install claude-sdk
+```
+
+**PHP**
+```bash
+composer require voxgig/claude-sdk
+```
+
+**Golang**
+```bash
+go get github.com/voxgig-sdk/claude-sdk/go
+```
+
+**Ruby**
+```bash
+gem install claude-sdk
+```
+
+**Lua**
+```bash
+luarocks install claude-sdk
+```
+
+## 30-second quickstart
+
+### TypeScript
+
+```ts
+import { ClaudeSDK } from 'claude'
+
+const client = new ClaudeSDK({})
+
+```
+
+See the [TypeScript README](ts/README.md) for the
+full guide, or scroll down for the same example in other languages.
+
+## What's in the box
+
+| Surface | Use it for | Path |
+| --- | --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
+| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+
+## Use it from an AI agent (MCP)
+
+The generated MCP server exposes every operation in this SDK as an
+[MCP](https://modelcontextprotocol.io) tool that Claude, Cursor or Cline
+can call directly. Build and register it:
+
+```bash
+cd go-mcp && go build -o claude-mcp .
+```
+
+Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
+
+```json
+{
+  "mcpServers": {
+    "claude": {
+      "command": "/abs/path/to/claude-mcp"
+    }
+  }
+}
+```
 
 ## Entities
 
@@ -11,70 +102,19 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Message** |  | `/messages` |
+| **Message** | A turn in a conversation with a Claude model — the core resource of the API, created via `POST /v1/messages`, batched via `POST /v1/messages/batches`, and measured via `POST /v1/messages/count_tokens`. | `/messages` |
 
-Each entity supports the following operations where available: **load**, **list**, **create**,
-**update**, and **remove**.
+Each entity supports the following operations where available: **load**,
+**list**, **create**, **update**, and **remove**.
 
+## Quickstart in other languages
 
-## Architecture
+### Python
 
-### Entity-operation model
+```python
+from claude_sdk import ClaudeSDK
 
-Every SDK call follows the same pipeline:
-
-1. **Point** — resolve the API endpoint from the operation definition.
-2. **Spec** — build the HTTP specification (URL, method, headers, body).
-3. **Request** — send the HTTP request.
-4. **Response** — receive and parse the response.
-5. **Result** — extract the result data for the caller.
-
-At each stage a feature hook fires (e.g. `PrePoint`, `PreSpec`,
-`PreRequest`), allowing features to inspect or modify the pipeline.
-
-### Features
-
-Features are hook-based middleware that extend SDK behaviour.
-
-| Feature | Purpose |
-| --- | --- |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-
-You can add custom features by passing them in the `extend` option at
-construction time.
-
-### Direct and Prepare
-
-For endpoints not covered by the entity model, use the low-level methods:
-
-- **`direct(fetchargs)`** — build and send an HTTP request in one step.
-- **`prepare(fetchargs)`** — build the request without sending it.
-
-Both accept a map with `path`, `method`, `params`, `query`, `headers`,
-and `body`.
-
-
-## Quick start
-
-### Golang
-
-```go
-import sdk "github.com/voxgig-sdk/claude-sdk/go"
-
-client := sdk.NewClaudeSDK(map[string]any{
-    "apikey": os.Getenv("CLAUDE_APIKEY"),
-})
-
-```
-
-### Lua
-
-```lua
-local sdk = require("claude_sdk")
-
-local client = sdk.new({
-  apikey = os.getenv("CLAUDE_APIKEY"),
-})
+client = ClaudeSDK({})
 
 ```
 
@@ -84,21 +124,16 @@ local client = sdk.new({
 <?php
 require_once 'claude_sdk.php';
 
-$client = new ClaudeSDK([
-    "apikey" => getenv("CLAUDE_APIKEY"),
-]);
+$client = new ClaudeSDK([]);
 
 ```
 
-### Python
+### Golang
 
-```python
-import os
-from claude_sdk import ClaudeSDK
+```go
+import sdk "github.com/voxgig-sdk/claude-sdk/go"
 
-client = ClaudeSDK({
-    "apikey": os.environ.get("CLAUDE_APIKEY"),
-})
+client := sdk.NewClaudeSDK(map[string]any{})
 
 ```
 
@@ -107,44 +142,38 @@ client = ClaudeSDK({
 ```ruby
 require_relative "Claude_sdk"
 
-client = ClaudeSDK.new({
-  "apikey" => ENV["CLAUDE_APIKEY"],
-})
+client = ClaudeSDK.new({})
 
-```
-
-### TypeScript
-
-```ts
-import { ClaudeSDK } from 'claude'
-
-const client = new ClaudeSDK({
-  apikey: process.env.CLAUDE_APIKEY,
-})
-
-```
-
-
-## Testing
-
-Both SDKs provide a test mode that replaces the HTTP transport with an
-in-memory mock, so tests run without a network connection.
-
-### Golang
-
-```go
-client := sdk.TestSDK(nil, nil)
-result, err := client.Message(nil).Load(
-    map[string]any{"id": "test01"}, nil,
-)
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Message(nil):load(
-  { id = "test01" }, nil
+local sdk = require("claude_sdk")
+
+local client = sdk.new({})
+
+```
+
+## Unit testing in offline mode
+
+Every SDK ships a test mode that swaps the HTTP transport for an
+in-memory mock, so unit tests run offline.
+
+### TypeScript
+
+```ts
+const client = ClaudeSDK.test()
+const result = await client.Message().load({ id: 'test01' })
+// result.ok === true, result.data contains mock data
+```
+
+### Python
+
+```python
+client = ClaudeSDK.test(None, None)
+result, err = client.Message(None).load(
+    {"id": "test01"}, None
 )
 ```
 
@@ -157,12 +186,12 @@ $client = ClaudeSDK::test(null, null);
 );
 ```
 
-### Python
+### Golang
 
-```python
-client = ClaudeSDK.test(None, None)
-result, err = client.Message(None).load(
-    {"id": "test01"}, None
+```go
+client := sdk.TestSDK(nil, nil)
+result, err := client.Message(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 ```
 
@@ -175,14 +204,46 @@ result, err = client.Message(nil).load(
 )
 ```
 
-### TypeScript
+### Lua
 
-```ts
-const client = ClaudeSDK.test()
-const result = await client.Message().load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+```lua
+local client = sdk.test(nil, nil)
+local result, err = client:Message(nil):load(
+  { id = "test01" }, nil
+)
 ```
 
+## How it works
+
+Every SDK call runs the same five-stage pipeline:
+
+1. **Point** — resolve the API endpoint from the operation definition.
+2. **Spec** — build the HTTP specification (URL, method, headers, body).
+3. **Request** — send the HTTP request.
+4. **Response** — receive and parse the response.
+5. **Result** — extract the result data for the caller.
+
+A feature hook fires at each stage (e.g. `PrePoint`, `PreSpec`,
+`PreRequest`), so features can inspect or modify the pipeline without
+forking the SDK.
+
+### Features
+
+| Feature | Purpose |
+| --- | --- |
+| **TestFeature** | In-memory mock transport for testing without a live server |
+
+Pass custom features via the `extend` option at construction time.
+
+### Direct and Prepare
+
+For endpoints the entity model doesn't cover, use the low-level methods:
+
+- **`direct(fetchargs)`** — build and send an HTTP request in one step.
+- **`prepare(fetchargs)`** — build the request without sending it.
+
+Both accept a map with `path`, `method`, `params`, `query`,
+`headers`, and `body`. See the [How-to guides](#how-to-guides) below.
 
 ## How-to guides
 
@@ -190,21 +251,22 @@ const result = await client.Message().load({ id: 'test01' })
 
 When the entity interface does not cover an endpoint, use `direct`:
 
-**Go:**
-```go
-result, err := client.Direct(map[string]any{
-    "path":   "/api/resource/{id}",
-    "method": "GET",
-    "params": map[string]any{"id": "example"},
+**TypeScript:**
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example' },
 })
+console.log(result.data)
 ```
 
-**Lua:**
-```lua
-local result, err = client:direct({
-  path = "/api/resource/{id}",
-  method = "GET",
-  params = { id = "example" },
+**Python:**
+```python
+result, err = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example"},
 })
 ```
 
@@ -217,12 +279,12 @@ local result, err = client:direct({
 ]);
 ```
 
-**Python:**
-```python
-result, err = client.direct({
-    "path": "/api/resource/{id}",
+**Go:**
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
     "method": "GET",
-    "params": {"id": "example"},
+    "params": map[string]any{"id": "example"},
 })
 ```
 
@@ -235,25 +297,34 @@ result, err = client.direct({
 })
 ```
 
-**TypeScript:**
-```ts
-const result = await client.direct({
-  path: '/api/resource/{id}',
-  method: 'GET',
-  params: { id: 'example' },
+**Lua:**
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example" },
 })
-console.log(result.data)
 ```
 
+## Per-language documentation
 
-## Language-specific documentation
+- [TypeScript](ts/README.md)
+- [Python](py/README.md)
+- [PHP](php/README.md)
+- [Golang](go/README.md)
+- [Ruby](rb/README.md)
+- [Lua](lua/README.md)
 
-- [Golang SDK](go/README.md)
-- [Go CLI SDK](go-cli/README.md)
-- [Go MCP server SDK](go-mcp/README.md)
-- [Lua SDK](lua/README.md)
-- [PHP SDK](php/README.md)
-- [Python SDK](py/README.md)
-- [Ruby SDK](rb/README.md)
-- [TypeScript SDK](ts/README.md)
+## Using the Claude API
 
+- Upstream: [https://www.anthropic.com/api](https://www.anthropic.com/api)
+- API docs: [https://docs.anthropic.com/en/api/overview](https://docs.anthropic.com/en/api/overview)
+
+- Commercial product from [Anthropic](https://www.anthropic.com/); access is gated by an API key issued from the [Claude Console](https://platform.claude.com/).
+- Use is governed by Anthropic's [Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms) and [Usage Policies](https://www.anthropic.com/legal/aup).
+- Billing is usage-based (tokens in / tokens out) with monthly spend limits organized into tiers; see [Rate limits](https://docs.anthropic.com/en/api/rate-limits).
+- No free public tier — you must hold a paid Anthropic account or access Claude via a supported cloud platform (AWS, Vertex AI, Microsoft Foundry).
+
+---
+
+Generated from the Claude API OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).

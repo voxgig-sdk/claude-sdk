@@ -113,7 +113,6 @@ func messageBasicSetup(extra map[string]any) *entityTestSetup {
 		"CLAUDE_TEST_MESSAGE_ENTID": idmap,
 		"CLAUDE_TEST_LIVE":      "FALSE",
 		"CLAUDE_TEST_EXPLAIN":   "FALSE",
-		"CLAUDE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["CLAUDE_TEST_MESSAGE_ENTID"])
@@ -124,7 +123,6 @@ func messageBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["CLAUDE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["CLAUDE_APIKEY"],
 			},
 			extra,
 		})

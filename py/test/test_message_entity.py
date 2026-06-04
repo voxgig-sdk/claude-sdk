@@ -88,7 +88,6 @@ def _message_basic_setup(extra):
         "CLAUDE_TEST_MESSAGE_ENTID": idmap,
         "CLAUDE_TEST_LIVE": "FALSE",
         "CLAUDE_TEST_EXPLAIN": "FALSE",
-        "CLAUDE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -99,7 +98,6 @@ def _message_basic_setup(extra):
     if env.get("CLAUDE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("CLAUDE_APIKEY"),
             },
             extra or {},
         ])
