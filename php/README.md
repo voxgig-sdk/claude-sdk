@@ -10,7 +10,7 @@ The PHP SDK for the Claude API — an entity-oriented client using PHP conventio
 
 ## Install
 ```bash
-composer require voxgig/claude-sdk
+composer require voxgig-sdk/claude
 ```
 
 

@@ -10,7 +10,7 @@ The Python SDK for the Claude API — an entity-oriented client following Python
 
 ## Install
 ```bash
-pip install claude-sdk
+pip install voxgig-sdk-claude
 ```
 
 Or install from source:

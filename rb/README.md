@@ -10,13 +10,13 @@ The Ruby SDK for the Claude API — an entity-oriented client using idiomatic Ru
 
 ## Install
 ```bash
-gem install claude-sdk
+gem install voxgig-sdk-claude
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "claude-sdk"
+gem "voxgig-sdk-claude"
 ```
 
 Then run:

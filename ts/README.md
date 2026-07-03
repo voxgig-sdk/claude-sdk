@@ -10,7 +10,7 @@ The TypeScript SDK for the Claude API — a type-safe, entity-oriented client wi
 
 ## Install
 ```bash
-npm install claude
+npm install @voxgig-sdk/claude
 ```
 ## Tutorial: your first API call
 
