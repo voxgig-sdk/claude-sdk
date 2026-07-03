@@ -87,6 +87,7 @@ function message_basic_setup(extra)
     ["CLAUDE_TEST_MESSAGE_ENTID"] = idmap,
     ["CLAUDE_TEST_LIVE"] = "FALSE",
     ["CLAUDE_TEST_EXPLAIN"] = "FALSE",
+    ["CLAUDE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -98,6 +99,7 @@ function message_basic_setup(extra)
   if env["CLAUDE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["CLAUDE_APIKEY"],
       },
       extra or {},
     })

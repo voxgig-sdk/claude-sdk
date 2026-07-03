@@ -1,24 +1,8 @@
 # Claude SDK
 
-Send prompts to Anthropic's Claude models (Opus, Sonnet, Haiku) over a RESTful HTTPS API
+Claude API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Claude API
-
-The Claude API is the RESTful HTTPS interface to Claude, the family of large language models built by [Anthropic](https://www.anthropic.com/). It lets applications send prompts and receive completions from the latest Claude models (Opus, Sonnet, Haiku) for chat, coding assistance, summarisation, tool use, and agent workflows.
-
-What you get from the API:
-
-- `POST /v1/messages` — send a conversation to a Claude model and receive a reply (streaming or non-streaming).
-- `POST /v1/messages/batches` — submit large volumes of message requests asynchronously at reduced cost.
-- `POST /v1/messages/count_tokens` — count tokens in a message before sending, to estimate cost and rate-limit impact.
-- `GET /v1/models` — list available Claude models and their metadata.
-- Beta surfaces for Files, Skills, Agents, Sessions and Environments are also exposed under `/v1/...` for building managed agents.
-
-All requests must go to `https://api.anthropic.com` and include an `x-api-key` header (or a Workload Identity Federation bearer token in `Authorization`), an `anthropic-version` header (for example `2023-06-01`), and `content-type: application/json`. Request bodies are capped at 32 MB for Messages and Token Counting, 256 MB for Message Batches, and 500 MB for Files.
-
-The API enforces per-organization rate limits (requests per minute and tokens per minute) and monthly spend limits that scale with usage tier; both are visible in the Console. Availability is global but restricted to [supported regions](https://docs.anthropic.com/en/api/supported-regions).
 
 ## Try it
 
@@ -52,27 +36,28 @@ gem install claude-sdk
 luarocks install claude-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { ClaudeSDK } from 'claude'
 
-const client = new ClaudeSDK({})
+const client = new ClaudeSDK({
+  apikey: process.env.CLAUDE_APIKEY,
+})
 
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,7 +87,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Message** | A turn in a conversation with a Claude model — the core resource of the API, created via `POST /v1/messages`, batched via `POST /v1/messages/batches`, and measured via `POST /v1/messages/count_tokens`. | `/messages` |
+| **Message** |  | `/messages` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,9 +97,12 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from claude_sdk import ClaudeSDK
 
-client = ClaudeSDK({})
+client = ClaudeSDK({
+    "apikey": os.environ.get("CLAUDE_APIKEY"),
+})
 
 ```
 
@@ -124,7 +112,9 @@ client = ClaudeSDK({})
 <?php
 require_once 'claude_sdk.php';
 
-$client = new ClaudeSDK([]);
+$client = new ClaudeSDK([
+    "apikey" => getenv("CLAUDE_APIKEY"),
+]);
 
 ```
 
@@ -133,7 +123,9 @@ $client = new ClaudeSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/claude-sdk/go"
 
-client := sdk.NewClaudeSDK(map[string]any{})
+client := sdk.NewClaudeSDK(map[string]any{
+    "apikey": os.Getenv("CLAUDE_APIKEY"),
+})
 
 ```
 
@@ -142,7 +134,9 @@ client := sdk.NewClaudeSDK(map[string]any{})
 ```ruby
 require_relative "Claude_sdk"
 
-client = ClaudeSDK.new({})
+client = ClaudeSDK.new({
+  "apikey" => ENV["CLAUDE_APIKEY"],
+})
 
 ```
 
@@ -151,7 +145,9 @@ client = ClaudeSDK.new({})
 ```lua
 local sdk = require("claude_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("CLAUDE_APIKEY"),
+})
 
 ```
 
@@ -171,25 +167,21 @@ const result = await client.Message().load({ id: 'test01' })
 ### Python
 
 ```python
-client = ClaudeSDK.test(None, None)
-result, err = client.Message(None).load(
-    {"id": "test01"}, None
-)
+client = ClaudeSDK.test()
+result, err = client.Message().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = ClaudeSDK::test(null, null);
-[$result, $err] = $client->Message(null)->load(
-    ["id" => "test01"], null
-);
+$client = ClaudeSDK::test();
+[$result, $err] = $client->Message()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Message(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -198,19 +190,15 @@ result, err := client.Message(nil).Load(
 ### Ruby
 
 ```ruby
-client = ClaudeSDK.test(nil, nil)
-result, err = client.Message(nil).load(
-  { "id" => "test01" }, nil
-)
+client = ClaudeSDK.test
+result, err = client.Message().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Message(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Message():load({ id = "test01" })
 ```
 
 ## How it works
@@ -314,16 +302,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Claude API
-
-- Upstream: [https://www.anthropic.com/api](https://www.anthropic.com/api)
-- API docs: [https://docs.anthropic.com/en/api/overview](https://docs.anthropic.com/en/api/overview)
-
-- Commercial product from [Anthropic](https://www.anthropic.com/); access is gated by an API key issued from the [Claude Console](https://platform.claude.com/).
-- Use is governed by Anthropic's [Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms) and [Usage Policies](https://www.anthropic.com/legal/aup).
-- Billing is usage-based (tokens in / tokens out) with monthly spend limits organized into tiers; see [Rate limits](https://docs.anthropic.com/en/api/rate-limits).
-- No free public tier — you must hold a paid Anthropic account or access Claude via a supported cloud platform (AWS, Vertex AI, Microsoft Foundry).
 
 ---
 

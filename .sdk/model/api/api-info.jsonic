@@ -18,31 +18,7 @@ main: {
       termsOfService: "https://www.anthropic.com/legal/consumer-terms"
       title: "Claude API"
       version: "1.0.0"
-      tagline: "Send prompts to Anthropic's Claude models (Opus, Sonnet, Haiku) over a RESTful HTTPS API"
-      homepage: "https://www.anthropic.com/api"
-      docs_url: "https://docs.anthropic.com/en/api/overview"
-      license_short: "Paid commercial API governed by Anthropic's Commercial Terms of Service; usage-based billing."
-      license_md: `- Commercial product from [Anthropic](https://www.anthropic.com/); access is gated by an API key issued from the [Claude Console](https://platform.claude.com/).
-- Use is governed by Anthropic's [Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms) and [Usage Policies](https://www.anthropic.com/legal/aup).
-- Billing is usage-based (tokens in / tokens out) with monthly spend limits organized into tiers; see [Rate limits](https://docs.anthropic.com/en/api/rate-limits).
-- No free public tier — you must hold a paid Anthropic account or access Claude via a supported cloud platform (AWS, Vertex AI, Microsoft Foundry).`
-      about_md: `The Claude API is the RESTful HTTPS interface to Claude, the family of large language models built by [Anthropic](https://www.anthropic.com/). It lets applications send prompts and receive completions from the latest Claude models (Opus, Sonnet, Haiku) for chat, coding assistance, summarisation, tool use, and agent workflows.
-
-What you get from the API:
-
-- \`POST /v1/messages\` — send a conversation to a Claude model and receive a reply (streaming or non-streaming).
-- \`POST /v1/messages/batches\` — submit large volumes of message requests asynchronously at reduced cost.
-- \`POST /v1/messages/count_tokens\` — count tokens in a message before sending, to estimate cost and rate-limit impact.
-- \`GET /v1/models\` — list available Claude models and their metadata.
-- Beta surfaces for Files, Skills, Agents, Sessions and Environments are also exposed under \`/v1/...\` for building managed agents.
-
-All requests must go to \`https://api.anthropic.com\` and include an \`x-api-key\` header (or a Workload Identity Federation bearer token in \`Authorization\`), an \`anthropic-version\` header (for example \`2023-06-01\`), and \`content-type: application/json\`. Request bodies are capped at 32 MB for Messages and Token Counting, 256 MB for Message Batches, and 500 MB for Files.
-
-The API enforces per-organization rate limits (requests per minute and tokens per minute) and monthly spend limits that scale with usage tier; both are visible in the Console. Availability is global but restricted to [supported regions](https://docs.anthropic.com/en/api/supported-regions).`
-      entity_desc: {
-        message: "A turn in a conversation with a Claude model — the core resource of the API, created via `POST /v1/messages`, batched via `POST /v1/messages/batches`, and measured via `POST /v1/messages/count_tokens`."
-      }
-      auth: false
     }
   }
 }
+
