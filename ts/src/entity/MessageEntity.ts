@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Message,
+  MessageCreateData,
+} from '../ClaudeTypes'
 
 // TODO: needs Entity superclass
-class MessageEntity extends ClaudeEntityBase {
+class MessageEntity extends ClaudeEntityBase<Message> {
 
   constructor(client: ClaudeSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class MessageEntity extends ClaudeEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: MessageCreateData, ctrl?: Control): Promise<Message> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class MessageEntity extends ClaudeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Message> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

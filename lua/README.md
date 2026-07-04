@@ -9,12 +9,9 @@ The Lua SDK for the Claude API — an entity-oriented client using Lua conventio
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-claude
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/claude-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -40,7 +37,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, _ = client:Message():create({ name = "Example" })
+local created, _ = client:message():create({ name = "Example" })
 
 ```
 
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Claude():load({ id = "test01" })
+local result, err = client:message():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -236,7 +233,7 @@ API path: `/messages`
 
 ### Message
 
-Create an instance: `const message = client.Message()`
+Create an instance: `const message = client.message`
 
 #### Operations
 
@@ -268,7 +265,7 @@ Create an instance: `const message = client.Message()`
 #### Example: Create
 
 ```ts
-const message = await client.Message().create({
+const message = await client.message.create({
   max_token: /* `$INTEGER` */,
   message: /* `$ARRAY` */,
 })
@@ -346,11 +343,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local message = client:message()
+message:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- message:data_get() now returns the loaded message data
+-- message:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

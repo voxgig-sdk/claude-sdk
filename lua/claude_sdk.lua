@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:message():list() / client:message():load({ id = ... })
+function ClaudeSDK:message(data)
+  local EntityMod = require("entity.message_entity")
+  if data == nil then
+    if self._message == nil then
+      self._message = EntityMod.new(self, nil)
+    end
+    return self._message
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:message() instead.
 function ClaudeSDK:Message(data)
   local EntityMod = require("entity.message_entity")
   return EntityMod.new(self, data)

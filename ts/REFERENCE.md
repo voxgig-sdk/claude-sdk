@@ -110,7 +110,7 @@ Alias for `ClaudeSDK.test()`.
 ## MessageEntity
 
 ```ts
-const message = client.Message()
+const message = client.message
 ```
 
 ### Fields
@@ -162,7 +162,7 @@ const message = client.Message()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Message().create({
+const result = await client.message.create({
   max_token: /* `$INTEGER` */,
   message: /* `$ARRAY` */,
 })

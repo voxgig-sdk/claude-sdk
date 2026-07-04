@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata MessageCreateData
+---@param ctrl? table
+---@return Message
+---@return string? err
 function MessageEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

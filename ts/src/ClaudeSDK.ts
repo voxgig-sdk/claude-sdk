@@ -2,6 +2,8 @@
 
 import { MessageEntity } from './entity/MessageEntity'
 
+export type * from './ClaudeTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class ClaudeSDK {
 
 
 
+  _message?: MessageEntity
+
+  // Idiomatic facade: `client.message.list()` / `client.message.load({ id })`.
+  get message(): MessageEntity {
+    return (this._message ??= new MessageEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.message` instead. */
   Message(data?: any) {
     const self = this
     return new MessageEntity(self,data)

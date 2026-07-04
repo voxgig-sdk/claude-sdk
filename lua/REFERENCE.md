@@ -84,7 +84,7 @@ same parameters as `direct()`.
 ## MessageEntity
 
 ```lua
-local message = client:Message(nil)
+local message = client:message(nil)
 ```
 
 ### Fields
@@ -136,7 +136,7 @@ local message = client:Message(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Message():create({
+local result, err = client:message():create({
   max_token = --[[ `$INTEGER` ]],
   message = --[[ `$ARRAY` ]],
 })

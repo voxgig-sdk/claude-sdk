@@ -44,9 +44,7 @@ class TestMessageEntity:
         message_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.message"), "message_ref01"))
 
-        message_ref01_data_result, err = message_ref01_ent.create(message_ref01_data, None)
-        assert err is None
-        message_ref01_data = helpers.to_map(message_ref01_data_result)
+        message_ref01_data = helpers.to_map(message_ref01_ent.create(message_ref01_data, None))
         assert message_ref01_data is not None
         assert message_ref01_data["id"] is not None
 

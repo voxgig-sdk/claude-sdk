@@ -245,6 +245,9 @@ func (sdk *ClaudeSDK) Direct(fetchargs map[string]any) (map[string]any, error) {
 }
 
 
+// Message returns a Message entity bound to this client.
+// Idiomatic usage: client.Message(nil).List(nil, nil) or
+// client.Message(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ClaudeSDK) Message(data map[string]any) ClaudeEntity {
 	return NewMessageEntityFunc(sdk, data)
 }
