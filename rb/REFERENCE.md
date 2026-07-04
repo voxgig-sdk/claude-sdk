@@ -87,7 +87,7 @@ same parameters as `direct()`. Raises on error.
 ## MessageEntity
 
 ```ruby
-message = client.message
+message = client.Message
 ```
 
 ### Fields
@@ -139,7 +139,7 @@ message = client.message
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.message.create({
+result = client.Message.create({
   "max_token" => # `$INTEGER`,
   "message" => # `$ARRAY`,
 })

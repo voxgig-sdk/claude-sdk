@@ -220,25 +220,15 @@ class ClaudeSDK:
         }
 
 
-    @property
-    def message(self):
-        """Idiomatic facade: client.message.list() / client.message.load({"id": ...})."""
-        from entity.message_entity import MessageEntity
-        cached = getattr(self, "_message", None)
-        if cached is None:
-            cached = MessageEntity(self, None)
-            self._message = cached
-        return cached
-
-    def Message(self, data=None):
-        # Deprecated: use client.message instead.
+    def Message(self, data=None) -> "MessageEntity":
+        """Entity factory: client.Message().list({}) / client.Message().load({"id": ...})."""
         from entity.message_entity import MessageEntity
         return MessageEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "ClaudeSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class ClaudeSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.message_entity import MessageEntity

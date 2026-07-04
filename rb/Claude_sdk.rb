@@ -208,13 +208,7 @@ class ClaudeSDK
   end
 
 
-  # Idiomatic facade: client.message.list / client.message.load({ "id" => ... })
-  def message
-    require_relative 'entity/message_entity'
-    @message ||= MessageEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.message instead.
+  # Canonical facade: client.Message.list / client.Message.load({ "id" => ... })
   def Message(data = nil)
     require_relative 'entity/message_entity'
     MessageEntity.new(self, data)

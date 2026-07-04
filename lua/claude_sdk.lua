@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:message():list() / client:message():load({ id = ... })
-function ClaudeSDK:message(data)
+-- Idiomatic facade: client:Message():list() / client:Message():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ClaudeSDK:Message(data)
   local EntityMod = require("entity.message_entity")
   if data == nil then
     if self._message == nil then
@@ -253,12 +254,6 @@ function ClaudeSDK:message(data)
     end
     return self._message
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:message() instead.
-function ClaudeSDK:Message(data)
-  local EntityMod = require("entity.message_entity")
   return EntityMod.new(self, data)
 end
 

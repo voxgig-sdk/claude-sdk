@@ -86,7 +86,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## MessageEntity
 
 ```php
-$message = $client->message();
+$message = $client->Message();
 ```
 
 ### Fields
@@ -138,7 +138,7 @@ $message = $client->message();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->message()->create([
+$result = $client->Message()->create([
   "max_token" => /* `$INTEGER` */,
   "message" => /* `$ARRAY` */,
 ]);

@@ -141,22 +141,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = ClaudeSDK.test()
-const result = await client.message.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const message = await client.Message().load({ id: 'test01' })
+// message is a bare Message populated with mock data
+console.log(message)
 ```
 
 ### Python
 
 ```python
 client = ClaudeSDK.test()
-result = client.message.load({"id": "test01"})
+message = client.Message().load({"id": "test01"})
+print(message)
 ```
 
 ### PHP
 
 ```php
-$client = ClaudeSDK::test();
-$result = $client->message()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = ClaudeSDK::test([
+    "entity" => ["message" => ["test01" => ["id" => "test01"]]],
+]);
+$message = $client->Message()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -171,15 +176,18 @@ result, err := client.Message(nil).Load(
 ### Ruby
 
 ```ruby
-client = ClaudeSDK.test
-result = client.message.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = ClaudeSDK.test({
+  "entity" => { "message" => { "test01" => { "id" => "test01" } } },
+})
+message = client.Message.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:message():load({ id = "test01" })
+local result, err = client:Message():load({ id = "test01" })
 ```
 
 ## How it works
@@ -227,6 +235,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

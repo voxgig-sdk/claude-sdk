@@ -204,14 +204,7 @@ class ClaudeSDK {
 
 
 
-  _message?: MessageEntity
-
-  // Idiomatic facade: `client.message.list()` / `client.message.load({ id })`.
-  get message(): MessageEntity {
-    return (this._message ??= new MessageEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.message` instead. */
+  // Entity access: `client.Message().list()` / `client.Message().load({ id })`.
   Message(data?: any) {
     const self = this
     return new MessageEntity(self,data)

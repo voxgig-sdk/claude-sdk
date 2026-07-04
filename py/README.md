@@ -37,8 +37,8 @@ client = ClaudeSDK({
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.message.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Message().create({"name": "Example"})
 
 ```
 
@@ -85,8 +85,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = ClaudeSDK.test()
 
-result = client.message.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+message = client.Message().load({"id": "test01"})
+# message contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -236,7 +237,7 @@ API path: `/messages`
 
 ### Message
 
-Create an instance: `const message = client.message`
+Create an instance: `message = client.Message()`
 
 #### Operations
 
@@ -267,10 +268,10 @@ Create an instance: `const message = client.message`
 
 #### Example: Create
 
-```ts
-const message = await client.message.create({
-  max_token: /* `$INTEGER` */,
-  message: /* `$ARRAY` */,
+```python
+message = client.Message().create({
+    "max_token": ...,  # `$INTEGER`
+    "message": ...,  # `$ARRAY`
 })
 ```
 
@@ -345,7 +346,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-message = client.message
+message = client.Message()
 message.load({"id": "example_id"})
 
 # message.data_get() now returns the loaded message data

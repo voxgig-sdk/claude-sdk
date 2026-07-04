@@ -233,10 +233,10 @@ class ClaudeSDK
 
     private $_message = null;
 
-    // Idiomatic facade: $client->message()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Message() (PHP method
-    // names are case-insensitive).
-    public function message($data = null)
+    // Canonical facade: $client->Message()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->message()
+    // resolves here too.
+    public function Message($data = null)
     {
         require_once __DIR__ . '/entity/message_entity.php';
         if ($data === null) {

@@ -81,7 +81,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## MessageEntity
 
 ```python
-message = client.message
+message = client.Message()
 ```
 
 ### Fields
@@ -133,9 +133,9 @@ message = client.message
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.message.create({
-    "max_token": # `$INTEGER`,
-    "message": # `$ARRAY`,
+result = client.Message().create({
+    "max_token": ...,  # `$INTEGER`
+    "message": ...,  # `$ARRAY`
 })
 ```
 

@@ -34,8 +34,8 @@ $client = new ClaudeSDK([
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->message()->create(["name" => "Example"]);
+// create() returns the bare created Message record.
+$created = $client->Message()->create(["name" => "Example"]);
 
 ```
 
@@ -80,13 +80,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = ClaudeSDK::test();
+$client = ClaudeSDK::test([
+    "entity" => ["message" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->message()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$message = $client->Message()->load(["id" => "test01"]);
+print_r($message);
 ```
 
 ### Use a custom fetch function
@@ -239,7 +243,7 @@ API path: `/messages`
 
 ### Message
 
-Create an instance: `const message = client.message`
+Create an instance: `$message = $client->Message();`
 
 #### Operations
 
@@ -270,11 +274,11 @@ Create an instance: `const message = client.message`
 
 #### Example: Create
 
-```ts
-const message = await client.message.create({
-  max_token: /* `$INTEGER` */,
-  message: /* `$ARRAY` */,
-})
+```php
+$message = $client->Message()->create([
+    "max_token" => null, // `$INTEGER`
+    "message" => null, // `$ARRAY`
+]);
 ```
 
 
@@ -349,7 +353,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$message = $client->message();
+$message = $client->Message();
 $message->load(["id" => "example_id"]);
 
 // $message->dataGet() now returns the loaded message data

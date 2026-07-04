@@ -4,49 +4,54 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Message:
+class MessageRequired(TypedDict):
     max_token: int
     message: list
-    content: Optional[list] = None
-    id: Optional[str] = None
-    metadata: Optional[dict] = None
-    model: Optional[str] = None
-    role: Optional[str] = None
-    stop_reason: Optional[str] = None
-    stop_sequence: Optional[str] = None
-    stream: Optional[bool] = None
-    system: Optional[str] = None
-    temperature: Optional[float] = None
-    top_k: Optional[int] = None
-    top_p: Optional[float] = None
-    type: Optional[str] = None
-    usage: Optional[dict] = None
 
 
-@dataclass
-class MessageCreateData:
-    content: Optional[list] = None
-    id: Optional[str] = None
-    max_token: Optional[int] = None
-    message: Optional[list] = None
-    metadata: Optional[dict] = None
-    model: Optional[str] = None
-    role: Optional[str] = None
-    stop_reason: Optional[str] = None
-    stop_sequence: Optional[str] = None
-    stream: Optional[bool] = None
-    system: Optional[str] = None
-    temperature: Optional[float] = None
-    top_k: Optional[int] = None
-    top_p: Optional[float] = None
-    type: Optional[str] = None
-    usage: Optional[dict] = None
+class Message(MessageRequired, total=False):
+    content: list
+    id: str
+    metadata: dict
+    model: str
+    role: str
+    stop_reason: str
+    stop_sequence: str
+    stream: bool
+    system: str
+    temperature: float
+    top_k: int
+    top_p: float
+    type: str
+    usage: dict
 
+
+class MessageCreateData(TypedDict, total=False):
+    content: list
+    id: str
+    max_token: int
+    message: list
+    metadata: dict
+    model: str
+    role: str
+    stop_reason: str
+    stop_sequence: str
+    stream: bool
+    system: str
+    temperature: float
+    top_k: int
+    top_p: float
+    type: str
+    usage: dict
