@@ -91,43 +91,43 @@ local message = client:Message(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `max_token` | ``$INTEGER`` | Yes |  |
-| `message` | ``$ARRAY`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `model` | ``$STRING`` | No |  |
-| `role` | ``$STRING`` | No |  |
-| `stop_reason` | ``$STRING`` | No |  |
-| `stop_sequence` | ``$STRING`` | No |  |
-| `stream` | ``$BOOLEAN`` | No |  |
-| `system` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `top_k` | ``$INTEGER`` | No |  |
-| `top_p` | ``$NUMBER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `usage` | ``$OBJECT`` | No |  |
+| `content` | `table` | No |  |
+| `id` | `string` | No |  |
+| `max_token` | `number` | Yes |  |
+| `message` | `table` | Yes |  |
+| `metadata` | `table` | No |  |
+| `model` | `string` | No |  |
+| `role` | `string` | No |  |
+| `stop_reason` | `string` | No |  |
+| `stop_sequence` | `string` | No |  |
+| `stream` | `boolean` | No |  |
+| `system` | `string` | No |  |
+| `temperature` | `number` | No |  |
+| `top_k` | `number` | No |  |
+| `top_p` | `number` | No |  |
+| `type` | `string` | No |  |
+| `usage` | `table` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `content` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `max_token` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `metadata` | - | - | - | - | - |
-| `model` | - | - | Yes | - | - |
-| `role` | - | - | - | - | - |
-| `stop_reason` | - | - | - | - | - |
-| `stop_sequence` | - | - | - | - | - |
-| `stream` | - | - | - | - | - |
-| `system` | - | - | - | - | - |
-| `temperature` | - | - | - | - | - |
-| `top_k` | - | - | - | - | - |
-| `top_p` | - | - | - | - | - |
-| `type` | - | - | - | - | - |
-| `usage` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `content` | - |
+| `id` | - |
+| `max_token` | - |
+| `message` | - |
+| `metadata` | - |
+| `model` | Yes |
+| `role` | - |
+| `stop_reason` | - |
+| `stop_sequence` | - |
+| `stream` | - |
+| `system` | - |
+| `temperature` | - |
+| `top_k` | - |
+| `top_p` | - |
+| `type` | - |
+| `usage` | - |
 
 ### Operations
 
@@ -137,8 +137,8 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Message():create({
-  max_token = --[[ `$INTEGER` ]],
-  message = --[[ `$ARRAY` ]],
+  max_token = --[[ number ]],
+  message = --[[ table ]],
 })
 ```
 

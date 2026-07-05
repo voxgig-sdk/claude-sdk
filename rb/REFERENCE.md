@@ -8,7 +8,7 @@ Complete API reference for the Claude Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'claude_sdk'
+require_relative 'Claude_sdk'
 
 client = ClaudeSDK.new(options)
 ```
@@ -94,43 +94,43 @@ message = client.Message
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `max_token` | ``$INTEGER`` | Yes |  |
-| `message` | ``$ARRAY`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `model` | ``$STRING`` | No |  |
-| `role` | ``$STRING`` | No |  |
-| `stop_reason` | ``$STRING`` | No |  |
-| `stop_sequence` | ``$STRING`` | No |  |
-| `stream` | ``$BOOLEAN`` | No |  |
-| `system` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `top_k` | ``$INTEGER`` | No |  |
-| `top_p` | ``$NUMBER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `usage` | ``$OBJECT`` | No |  |
+| `content` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `max_token` | `Integer` | Yes |  |
+| `message` | `Array` | Yes |  |
+| `metadata` | `Hash` | No |  |
+| `model` | `String` | No |  |
+| `role` | `String` | No |  |
+| `stop_reason` | `String` | No |  |
+| `stop_sequence` | `String` | No |  |
+| `stream` | `Boolean` | No |  |
+| `system` | `String` | No |  |
+| `temperature` | `Float` | No |  |
+| `top_k` | `Integer` | No |  |
+| `top_p` | `Float` | No |  |
+| `type` | `String` | No |  |
+| `usage` | `Hash` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `content` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `max_token` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `metadata` | - | - | - | - | - |
-| `model` | - | - | Yes | - | - |
-| `role` | - | - | - | - | - |
-| `stop_reason` | - | - | - | - | - |
-| `stop_sequence` | - | - | - | - | - |
-| `stream` | - | - | - | - | - |
-| `system` | - | - | - | - | - |
-| `temperature` | - | - | - | - | - |
-| `top_k` | - | - | - | - | - |
-| `top_p` | - | - | - | - | - |
-| `type` | - | - | - | - | - |
-| `usage` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `content` | - |
+| `id` | - |
+| `max_token` | - |
+| `message` | - |
+| `metadata` | - |
+| `model` | Yes |
+| `role` | - |
+| `stop_reason` | - |
+| `stop_sequence` | - |
+| `stream` | - |
+| `system` | - |
+| `temperature` | - |
+| `top_k` | - |
+| `top_p` | - |
+| `type` | - |
+| `usage` | - |
 
 ### Operations
 
@@ -140,8 +140,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Message.create({
-  "max_token" => # `$INTEGER`,
-  "message" => # `$ARRAY`,
+  "max_token" => 1, # Integer
+  "message" => [], # Array
 })
 ```
 

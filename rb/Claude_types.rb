@@ -77,7 +77,7 @@ Message = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Message#create (any subset of Message fields).
+# Request payload for Message#create.
 #
 # @!attribute [rw] content
 #   @return [Array, nil]
@@ -86,10 +86,10 @@ Message = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] max_token
-#   @return [Integer, nil]
+#   @return [Integer]
 #
 # @!attribute [rw] message
-#   @return [Array, nil]
+#   @return [Array]
 #
 # @!attribute [rw] metadata
 #   @return [Hash, nil]

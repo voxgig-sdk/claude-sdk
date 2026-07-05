@@ -88,43 +88,43 @@ message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `max_token` | ``$INTEGER`` | Yes |  |
-| `message` | ``$ARRAY`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `model` | ``$STRING`` | No |  |
-| `role` | ``$STRING`` | No |  |
-| `stop_reason` | ``$STRING`` | No |  |
-| `stop_sequence` | ``$STRING`` | No |  |
-| `stream` | ``$BOOLEAN`` | No |  |
-| `system` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `top_k` | ``$INTEGER`` | No |  |
-| `top_p` | ``$NUMBER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `usage` | ``$OBJECT`` | No |  |
+| `content` | `list` | No |  |
+| `id` | `str` | No |  |
+| `max_token` | `int` | Yes |  |
+| `message` | `list` | Yes |  |
+| `metadata` | `dict` | No |  |
+| `model` | `str` | No |  |
+| `role` | `str` | No |  |
+| `stop_reason` | `str` | No |  |
+| `stop_sequence` | `str` | No |  |
+| `stream` | `bool` | No |  |
+| `system` | `str` | No |  |
+| `temperature` | `float` | No |  |
+| `top_k` | `int` | No |  |
+| `top_p` | `float` | No |  |
+| `type` | `str` | No |  |
+| `usage` | `dict` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `content` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `max_token` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `metadata` | - | - | - | - | - |
-| `model` | - | - | Yes | - | - |
-| `role` | - | - | - | - | - |
-| `stop_reason` | - | - | - | - | - |
-| `stop_sequence` | - | - | - | - | - |
-| `stream` | - | - | - | - | - |
-| `system` | - | - | - | - | - |
-| `temperature` | - | - | - | - | - |
-| `top_k` | - | - | - | - | - |
-| `top_p` | - | - | - | - | - |
-| `type` | - | - | - | - | - |
-| `usage` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `content` | - |
+| `id` | - |
+| `max_token` | - |
+| `message` | - |
+| `metadata` | - |
+| `model` | Yes |
+| `role` | - |
+| `stop_reason` | - |
+| `stop_sequence` | - |
+| `stream` | - |
+| `system` | - |
+| `temperature` | - |
+| `top_k` | - |
+| `top_p` | - |
+| `type` | - |
+| `usage` | - |
 
 ### Operations
 
@@ -134,8 +134,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Message().create({
-    "max_token": ...,  # `$INTEGER`
-    "message": ...,  # `$ARRAY`
+    "max_token": 1,  # int
+    "message": [],  # list
 })
 ```
 

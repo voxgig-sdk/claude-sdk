@@ -221,7 +221,7 @@ class ClaudeSDK:
 
 
     def Message(self, data=None) -> "MessageEntity":
-        """Entity factory: client.Message().list({}) / client.Message().load({"id": ...})."""
+        """Entity factory: client.Message().list() / client.Message().load({"id": ...})."""
         from entity.message_entity import MessageEntity
         return MessageEntity(self, data)
 

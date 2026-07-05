@@ -28,13 +28,12 @@ type Message struct {
 	Usage *map[string]any `json:"usage,omitempty"`
 }
 
-// MessageCreateData mirrors the message fields as an all-optional match
-// filter (Go analog of Partial<Message>).
+// MessageCreateData is the typed request payload for Message.CreateTyped.
 type MessageCreateData struct {
 	Content *[]any `json:"content,omitempty"`
 	Id *string `json:"id,omitempty"`
-	MaxToken *int `json:"max_token,omitempty"`
-	Message *[]any `json:"message,omitempty"`
+	MaxToken int `json:"max_token"`
+	Message []any `json:"message"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	Model *string `json:"model,omitempty"`
 	Role *string `json:"role,omitempty"`

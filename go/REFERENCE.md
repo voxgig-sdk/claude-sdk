@@ -98,43 +98,43 @@ message := client.Message(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `max_token` | ``$INTEGER`` | Yes |  |
-| `message` | ``$ARRAY`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `model` | ``$STRING`` | No |  |
-| `role` | ``$STRING`` | No |  |
-| `stop_reason` | ``$STRING`` | No |  |
-| `stop_sequence` | ``$STRING`` | No |  |
-| `stream` | ``$BOOLEAN`` | No |  |
-| `system` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `top_k` | ``$INTEGER`` | No |  |
-| `top_p` | ``$NUMBER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `usage` | ``$OBJECT`` | No |  |
+| `content` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `max_token` | `int` | Yes |  |
+| `message` | `[]any` | Yes |  |
+| `metadata` | `map[string]any` | No |  |
+| `model` | `string` | No |  |
+| `role` | `string` | No |  |
+| `stop_reason` | `string` | No |  |
+| `stop_sequence` | `string` | No |  |
+| `stream` | `bool` | No |  |
+| `system` | `string` | No |  |
+| `temperature` | `float64` | No |  |
+| `top_k` | `int` | No |  |
+| `top_p` | `float64` | No |  |
+| `type` | `string` | No |  |
+| `usage` | `map[string]any` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `content` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `max_token` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `metadata` | - | - | - | - | - |
-| `model` | - | - | Yes | - | - |
-| `role` | - | - | - | - | - |
-| `stop_reason` | - | - | - | - | - |
-| `stop_sequence` | - | - | - | - | - |
-| `stream` | - | - | - | - | - |
-| `system` | - | - | - | - | - |
-| `temperature` | - | - | - | - | - |
-| `top_k` | - | - | - | - | - |
-| `top_p` | - | - | - | - | - |
-| `type` | - | - | - | - | - |
-| `usage` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `content` | - |
+| `id` | - |
+| `max_token` | - |
+| `message` | - |
+| `metadata` | - |
+| `model` | Yes |
+| `role` | - |
+| `stop_reason` | - |
+| `stop_sequence` | - |
+| `stream` | - |
+| `system` | - |
+| `temperature` | - |
+| `top_k` | - |
+| `top_p` | - |
+| `type` | - |
+| `usage` | - |
 
 ### Operations
 
@@ -144,8 +144,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Message(nil).Create(map[string]any{
-    "max_token": /* `$INTEGER` */,
-    "message": /* `$ARRAY` */,
+    "max_token": /* int */,
+    "message": /* []any */,
 }, nil)
 ```
 

@@ -33,13 +33,13 @@ class Message
     public ?array $usage = null;
 }
 
-/** Match filter for Message#create (any subset of Message fields). */
+/** Request payload for Message#create. */
 class MessageCreateData
 {
     public ?array $content = null;
     public ?string $id = null;
-    public ?int $max_token = null;
-    public ?array $message = null;
+    public int $max_token;
+    public array $message;
     public ?array $metadata = null;
     public ?string $model = null;
     public ?string $role = null;

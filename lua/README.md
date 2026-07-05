@@ -4,6 +4,8 @@
 
 The Lua SDK for the Claude API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Message()` — each with the same small set of operations (`create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,9 +39,31 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Message():create({ name = "Example" })
+local created, err = client:Message():create({ max_token = 1, message = {} })
 if err then error(err) end
 
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local message, err = client:Message():create({ max_token = 1, message = {} })
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -85,8 +109,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Message():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Message():create({ max_token = 1, message = {} })
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -174,11 +198,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
 | `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -193,12 +213,11 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
-| `list` | an array (`table`) of entity records |
+| `create` | the entity record (a `table`) |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local message, err = client:Message():load({ id = "example_id" })
+    local message, err = client:Message():load()
     if err then error(err) end
     -- message is the loaded record
 
@@ -251,39 +270,43 @@ Create an instance: `local message = client:Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `max_token` | ``$INTEGER`` |  |
-| `message` | ``$ARRAY`` |  |
-| `metadata` | ``$OBJECT`` |  |
-| `model` | ``$STRING`` |  |
-| `role` | ``$STRING`` |  |
-| `stop_reason` | ``$STRING`` |  |
-| `stop_sequence` | ``$STRING`` |  |
-| `stream` | ``$BOOLEAN`` |  |
-| `system` | ``$STRING`` |  |
-| `temperature` | ``$NUMBER`` |  |
-| `top_k` | ``$INTEGER`` |  |
-| `top_p` | ``$NUMBER`` |  |
-| `type` | ``$STRING`` |  |
-| `usage` | ``$OBJECT`` |  |
+| `content` | `table` |  |
+| `id` | `string` |  |
+| `max_token` | `number` |  |
+| `message` | `table` |  |
+| `metadata` | `table` |  |
+| `model` | `string` |  |
+| `role` | `string` |  |
+| `stop_reason` | `string` |  |
+| `stop_sequence` | `string` |  |
+| `stream` | `boolean` |  |
+| `system` | `string` |  |
+| `temperature` | `number` |  |
+| `top_k` | `number` |  |
+| `top_p` | `number` |  |
+| `type` | `string` |  |
+| `usage` | `table` |  |
 
 #### Example: Create
 
 ```lua
 local message, err = client:Message():create({
-  max_token = nil, -- `$INTEGER`
-  message = nil, -- `$ARRAY`
+  max_token = nil, -- number
+  message = nil, -- table
 })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -300,8 +323,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -345,14 +369,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `create`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local message = client:Message()
-message:load({ id = "example_id" })
+message:create({ max_token = 1, message = {} })
 
--- message:data_get() now returns the loaded message data
+-- message:data_get() now returns the message data from the last create
 -- message:match_get() returns the last match criteria
 ```
 

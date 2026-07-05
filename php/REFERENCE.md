@@ -46,11 +46,11 @@ $client = ClaudeSDK::test();
 
 Create a new `MessageEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): ClaudeUtility`
 
 Return a copy of the SDK utility object.
 
@@ -93,43 +93,43 @@ $message = $client->Message();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `max_token` | ``$INTEGER`` | Yes |  |
-| `message` | ``$ARRAY`` | Yes |  |
-| `metadata` | ``$OBJECT`` | No |  |
-| `model` | ``$STRING`` | No |  |
-| `role` | ``$STRING`` | No |  |
-| `stop_reason` | ``$STRING`` | No |  |
-| `stop_sequence` | ``$STRING`` | No |  |
-| `stream` | ``$BOOLEAN`` | No |  |
-| `system` | ``$STRING`` | No |  |
-| `temperature` | ``$NUMBER`` | No |  |
-| `top_k` | ``$INTEGER`` | No |  |
-| `top_p` | ``$NUMBER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `usage` | ``$OBJECT`` | No |  |
+| `content` | `array` | No |  |
+| `id` | `string` | No |  |
+| `max_token` | `int` | Yes |  |
+| `message` | `array` | Yes |  |
+| `metadata` | `array` | No |  |
+| `model` | `string` | No |  |
+| `role` | `string` | No |  |
+| `stop_reason` | `string` | No |  |
+| `stop_sequence` | `string` | No |  |
+| `stream` | `bool` | No |  |
+| `system` | `string` | No |  |
+| `temperature` | `float` | No |  |
+| `top_k` | `int` | No |  |
+| `top_p` | `float` | No |  |
+| `type` | `string` | No |  |
+| `usage` | `array` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `content` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `max_token` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `metadata` | - | - | - | - | - |
-| `model` | - | - | Yes | - | - |
-| `role` | - | - | - | - | - |
-| `stop_reason` | - | - | - | - | - |
-| `stop_sequence` | - | - | - | - | - |
-| `stream` | - | - | - | - | - |
-| `system` | - | - | - | - | - |
-| `temperature` | - | - | - | - | - |
-| `top_k` | - | - | - | - | - |
-| `top_p` | - | - | - | - | - |
-| `type` | - | - | - | - | - |
-| `usage` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `content` | - |
+| `id` | - |
+| `max_token` | - |
+| `message` | - |
+| `metadata` | - |
+| `model` | Yes |
+| `role` | - |
+| `stop_reason` | - |
+| `stop_sequence` | - |
+| `stream` | - |
+| `system` | - |
+| `temperature` | - |
+| `top_k` | - |
+| `top_p` | - |
+| `type` | - |
+| `usage` | - |
 
 ### Operations
 
@@ -139,26 +139,26 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Message()->create([
-  "max_token" => /* `$INTEGER` */,
-  "message" => /* `$ARRAY` */,
+  "max_token" => null, // int
+  "message" => null, // array
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -167,7 +167,7 @@ Set the entity match criteria.
 Create a new `MessageEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

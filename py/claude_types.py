@@ -38,11 +38,14 @@ class Message(MessageRequired, total=False):
     usage: dict
 
 
-class MessageCreateData(TypedDict, total=False):
-    content: list
-    id: str
+class MessageCreateDataRequired(TypedDict):
     max_token: int
     message: list
+
+
+class MessageCreateData(MessageCreateDataRequired, total=False):
+    content: list
+    id: str
     metadata: dict
     model: str
     role: str
