@@ -324,9 +324,13 @@ Create an instance: `message := client.Message(nil)`
 
 ```go
 result, err := client.Message(nil).Create(map[string]any{
-    "max_token": /* int */,
-    "message": /* []any */,
+    "max_token": 1,
+    "message": []any{},
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

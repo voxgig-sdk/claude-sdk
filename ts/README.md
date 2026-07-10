@@ -349,8 +349,8 @@ Create an instance: `const message = client.Message()`
 
 ```ts
 const message = await client.Message().create({
-  max_token: /* number */,
-  message: /* any[] */,
+  max_token: 1,
+  message: [],
 })
 ```
 

@@ -92,6 +92,7 @@ same parameters as `Direct()`.
 
 ```go
 message := client.Message(nil)
+fmt.Println(message.GetName()) // "message"
 ```
 
 ### Fields
@@ -144,9 +145,13 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Message(nil).Create(map[string]any{
-    "max_token": /* int */,
-    "message": /* []any */,
+    "max_token": 1,
+    "message": []any{},
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -21,7 +21,7 @@ class ClaudeConfig
             "options" => [
                 "base" => "https://api.anthropic.com/v1",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -285,15 +282,25 @@
           "url": "https://platform.claude.com"
         },
         "description": "The Claude API enables developers to integrate advanced AI capabilities into their applications. It allows users to access the latest Claude models, including Opus, Sonnet, and Haiku, and provides a versatile platform for various use cases such as coding assistance, chatbot functionalities, and more.",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "x-api-key",
+          "prefix": "",
+          "scheme": "ApiKeyAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Production server",
             "url": "https://api.anthropic.com/v1"
           }
         ],
+        "summary": "The Claude API enables developers to integrate advanced AI capabilities into their applications.",
         "termsOfService": "https://www.anthropic.com/legal/consumer-terms",
         "title": "Claude API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://anthropic.com"
       },
       "option": {},
       "target": {
@@ -346,6 +353,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -396,6 +406,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

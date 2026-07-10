@@ -163,8 +163,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Message().create({
-  max_token: /* number */,
-  message: /* any[] */,
+  max_token: 1,
+  message: [],
 })
 ```
 

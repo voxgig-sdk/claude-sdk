@@ -291,8 +291,8 @@ Create an instance: `local message = client:Message(nil)`
 
 ```lua
 local message, err = client:Message():create({
-  max_token = nil, -- number
-  message = nil, -- table
+  max_token = 1, -- number
+  message = {}, -- table
 })
 ```
 
