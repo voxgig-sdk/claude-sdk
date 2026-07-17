@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Claude SDK exists test
 
 local sdk = require("claude_sdk")
 
