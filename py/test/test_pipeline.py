@@ -16,11 +16,11 @@
 import pytest
 
 from claude_sdk import ClaudeSDK
-from core.error import ClaudeError
-from core.result import ClaudeResult
-from core.response import ClaudeResponse
-from core.spec import ClaudeSpec
-from feature.base_feature import ClaudeBaseFeature
+from claude_sdk.core.error import ClaudeError
+from claude_sdk.core.result import ClaudeResult
+from claude_sdk.core.response import ClaudeResponse
+from claude_sdk.core.spec import ClaudeSpec
+from claude_sdk.feature.base_feature import ClaudeBaseFeature
 
 
 def _client():

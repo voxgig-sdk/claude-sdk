@@ -35,8 +35,8 @@ client = ClaudeSDK.new({
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Message record.
-created = client.Message.create({ "max_token" => 1, "message" => [] })
+# create returns the ENTITY — call data_get for the created Message record.
+created = client.Message.create({ "max_tokens" => 1, "messages" => [] })
 
 ```
 
@@ -47,7 +47,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  message = client.Message.create({ "max_token" => 1, "message" => [] })
+  message = client.Message.create({ "max_tokens" => 1, "messages" => [] })
 rescue => err
   warn "create failed: #{err}"
 end
@@ -115,8 +115,9 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = ClaudeSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-message = client.Message.create({ "max_token" => 1, "message" => [] })
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+message = client.Message.create({ "max_tokens" => 1, "messages" => [] })
 puts message
 ```
 
@@ -236,13 +237,14 @@ returns a result `Hash` with these keys:
 | --- | --- |
 | `content` |  |
 | `id` |  |
-| `max_token` |  |
-| `message` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `model` |  |
 | `role` |  |
 | `stop_reason` |  |
 | `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stream` |  |
 | `system` |  |
 | `temperature` |  |
@@ -276,13 +278,14 @@ Create an instance: `message = client.Message`
 | --- | --- | --- |
 | `content` | `Array` |  |
 | `id` | `String` |  |
-| `max_token` | `Integer` |  |
-| `message` | `Array` |  |
+| `max_tokens` | `Integer` |  |
+| `messages` | `Array` |  |
 | `metadata` | `Hash` |  |
 | `model` | `String` |  |
 | `role` | `String` |  |
 | `stop_reason` | `String` |  |
 | `stop_sequence` | `String` |  |
+| `stop_sequences` | `Array` |  |
 | `stream` | `Boolean` |  |
 | `system` | `String` |  |
 | `temperature` | `Float` |  |
@@ -295,8 +298,8 @@ Create an instance: `message = client.Message`
 
 ```ruby
 message = client.Message.create({
-  "max_token" => 1, # Integer
-  "message" => [], # Array
+  "max_tokens" => 1, # Integer
+  "messages" => [], # Array
 })
 ```
 
@@ -378,7 +381,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 message = client.Message
-message.create({ "max_token" => 1, "message" => [] })
+message.create({ "max_tokens" => 1, "messages" => [] })
 
 # message.data_get now returns the message data from the last create
 # message.match_get returns the last match criteria

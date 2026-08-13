@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Claude',
   }
 
 
@@ -74,14 +74,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "max_token",
+          "name": "max_tokens",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "message",
+          "name": "messages",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 3
@@ -129,52 +129,59 @@ class Config {
         },
         {
           "active": true,
+          "name": "stop_sequences",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 9
+        },
+        {
+          "active": true,
           "name": "stream",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 9
+          "index$": 10
         },
         {
           "active": true,
           "name": "system",
           "req": false,
           "type": "`$STRING`",
-          "index$": 10
+          "index$": 11
         },
         {
           "active": true,
           "name": "temperature",
           "req": false,
           "type": "`$NUMBER`",
-          "index$": 11
+          "index$": 12
         },
         {
           "active": true,
           "name": "top_k",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 12
+          "index$": 13
         },
         {
           "active": true,
           "name": "top_p",
           "req": false,
           "type": "`$NUMBER`",
-          "index$": 13
+          "index$": 14
         },
         {
           "active": true,
           "name": "type",
           "req": false,
           "type": "`$STRING`",
-          "index$": 14
+          "index$": 15
         },
         {
           "active": true,
           "name": "usage",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 15
+          "index$": 16
         }
       ],
       "name": "message",
@@ -186,6 +193,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/messages",
               "parts": [

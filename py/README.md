@@ -42,8 +42,8 @@ client = ClaudeSDK({
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
-created = client.Message().create({"max_token": 1, "message": []})
+# Create — returns the ENTITY (call data_get() for the record)
+created = client.Message().create({"max_tokens": 1, "messages": []})
 
 ```
 
@@ -54,7 +54,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    message = client.Message().create({ "max_token": 1, "message": [] })
+    message = client.Message().create({ "max_tokens": 1, "messages": [] })
     print(message)
 except Exception as err:
     print(f"create failed: {err}")
@@ -121,8 +121,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = ClaudeSDK.test()
 
-# Entity ops return the bare record and raise on error.
-message = client.Message().create({"max_token": 1, "message": []})
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+message = client.Message().create({"max_tokens": 1, "messages": []})
 # message contains the mock response record
 ```
 
@@ -219,7 +220,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -243,13 +244,14 @@ On error, `ok` is `False` and `err` contains the error value.
 | --- | --- |
 | `content` |  |
 | `id` |  |
-| `max_token` |  |
-| `message` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `model` |  |
 | `role` |  |
 | `stop_reason` |  |
 | `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stream` |  |
 | `system` |  |
 | `temperature` |  |
@@ -283,13 +285,14 @@ Create an instance: `message = client.Message()`
 | --- | --- | --- |
 | `content` | `list` |  |
 | `id` | `str` |  |
-| `max_token` | `int` |  |
-| `message` | `list` |  |
+| `max_tokens` | `int` |  |
+| `messages` | `list` |  |
 | `metadata` | `dict` |  |
 | `model` | `str` |  |
 | `role` | `str` |  |
 | `stop_reason` | `str` |  |
 | `stop_sequence` | `str` |  |
+| `stop_sequences` | `list` |  |
 | `stream` | `bool` |  |
 | `system` | `str` |  |
 | `temperature` | `float` |  |
@@ -302,8 +305,8 @@ Create an instance: `message = client.Message()`
 
 ```python
 message = client.Message().create({
-    "max_token": 1,  # int
-    "message": [],  # list
+    "max_tokens": 1,  # int
+    "messages": [],  # list
 })
 ```
 
@@ -384,7 +387,7 @@ stores the returned data and match criteria internally.
 
 ```python
 message = client.Message()
-message.create({ "max_token": 1, "message": [] })
+message.create({ "max_tokens": 1, "messages": [] })
 
 # message.data_get() now returns the message data from the last create
 # message.match_get() returns the last match criteria

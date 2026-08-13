@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ ClaudeUtility.registrar = ->(u) {
   u.prepare_params = ClaudeUtilities::PrepareParams
   u.prepare_path = ClaudeUtilities::PreparePath
   u.prepare_query = ClaudeUtilities::PrepareQuery
+  u.graphql_body = ClaudeUtilities::GraphqlBody
+  u.graphql_errors = ClaudeUtilities::GraphqlErrors
   u.result_basic = ClaudeUtilities::ResultBasic
   u.result_body = ClaudeUtilities::ResultBody
   u.result_headers = ClaudeUtilities::ResultHeaders

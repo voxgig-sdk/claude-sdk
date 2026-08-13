@@ -95,13 +95,14 @@ $message = $client->Message();
 | --- | --- | --- | --- |
 | `content` | `array` | No |  |
 | `id` | `string` | No |  |
-| `max_token` | `int` | Yes |  |
-| `message` | `array` | Yes |  |
+| `max_tokens` | `int` | Yes |  |
+| `messages` | `array` | Yes |  |
 | `metadata` | `array` | No |  |
 | `model` | `string` | No |  |
 | `role` | `string` | No |  |
 | `stop_reason` | `string` | No |  |
 | `stop_sequence` | `string` | No |  |
+| `stop_sequences` | `array` | No |  |
 | `stream` | `bool` | No |  |
 | `system` | `string` | No |  |
 | `temperature` | `float` | No |  |
@@ -116,13 +117,14 @@ $message = $client->Message();
 | --- | --- |
 | `content` | - |
 | `id` | - |
-| `max_token` | - |
-| `message` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `model` | Yes |
 | `role` | - |
 | `stop_reason` | - |
 | `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stream` | - |
 | `system` | - |
 | `temperature` | - |
@@ -139,8 +141,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Message()->create([
-  "max_token" => null, // int
-  "message" => null, // array
+  "max_tokens" => null, // int
+  "messages" => null, // array
 ]);
 ```
 

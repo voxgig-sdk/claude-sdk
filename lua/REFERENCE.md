@@ -93,13 +93,14 @@ local message = client:Message(nil)
 | --- | --- | --- | --- |
 | `content` | `table` | No |  |
 | `id` | `string` | No |  |
-| `max_token` | `number` | Yes |  |
-| `message` | `table` | Yes |  |
+| `max_tokens` | `number` | Yes |  |
+| `messages` | `table` | Yes |  |
 | `metadata` | `table` | No |  |
 | `model` | `string` | No |  |
 | `role` | `string` | No |  |
 | `stop_reason` | `string` | No |  |
 | `stop_sequence` | `string` | No |  |
+| `stop_sequences` | `table` | No |  |
 | `stream` | `boolean` | No |  |
 | `system` | `string` | No |  |
 | `temperature` | `number` | No |  |
@@ -114,13 +115,14 @@ local message = client:Message(nil)
 | --- | --- |
 | `content` | - |
 | `id` | - |
-| `max_token` | - |
-| `message` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `model` | Yes |
 | `role` | - |
 | `stop_reason` | - |
 | `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stream` | - |
 | `system` | - |
 | `temperature` | - |
@@ -137,8 +139,8 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Message():create({
-  max_token = --[[ number ]],
-  message = --[[ table ]],
+  max_tokens = --[[ number ]],
+  messages = --[[ table ]],
 })
 ```
 

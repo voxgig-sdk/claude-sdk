@@ -16,10 +16,10 @@
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] max_token
+# @!attribute [rw] max_tokens
 #   @return [Integer]
 #
-# @!attribute [rw] message
+# @!attribute [rw] messages
 #   @return [Array]
 #
 # @!attribute [rw] metadata
@@ -36,6 +36,9 @@
 #
 # @!attribute [rw] stop_sequence
 #   @return [String, nil]
+#
+# @!attribute [rw] stop_sequences
+#   @return [Array, nil]
 #
 # @!attribute [rw] stream
 #   @return [Boolean, nil]
@@ -60,13 +63,14 @@
 Message = Struct.new(
   :content,
   :id,
-  :max_token,
-  :message,
+  :max_tokens,
+  :messages,
   :metadata,
   :model,
   :role,
   :stop_reason,
   :stop_sequence,
+  :stop_sequences,
   :stream,
   :system,
   :temperature,
@@ -85,10 +89,10 @@ Message = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] max_token
+# @!attribute [rw] max_tokens
 #   @return [Integer]
 #
-# @!attribute [rw] message
+# @!attribute [rw] messages
 #   @return [Array]
 #
 # @!attribute [rw] metadata
@@ -105,6 +109,9 @@ Message = Struct.new(
 #
 # @!attribute [rw] stop_sequence
 #   @return [String, nil]
+#
+# @!attribute [rw] stop_sequences
+#   @return [Array, nil]
 #
 # @!attribute [rw] stream
 #   @return [Boolean, nil]
@@ -129,13 +136,14 @@ Message = Struct.new(
 MessageCreateData = Struct.new(
   :content,
   :id,
-  :max_token,
-  :message,
+  :max_tokens,
+  :messages,
   :metadata,
   :model,
   :role,
   :stop_reason,
   :stop_sequence,
+  :stop_sequences,
   :stream,
   :system,
   :temperature,

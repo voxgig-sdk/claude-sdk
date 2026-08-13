@@ -38,10 +38,10 @@ const client = new ClaudeSDK({
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Message
+// Create — returns the created Message ENTITY (.data() for the record)
 const created = await client.Message().create({
-  max_token: 1,
-  message: [],
+  max_tokens: 1,
+  messages: [],
 })
 
 ```
@@ -53,7 +53,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const message = await client.Message().create({ max_token: 1, message: [] })
+  const message = await client.Message().create({ max_tokens: 1, messages: [] })
   console.log(message)
 } catch (err) {
   console.error('create failed:', err)
@@ -120,8 +120,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = ClaudeSDK.test()
 
-const message = await client.Message().create({ max_token: 1, message: [] })
-// message is a bare entity populated with mock response data
+const message = await client.Message().create({ max_tokens: 1, messages: [] })
+// message is the entity, populated with mock response data
+// — call message.data() for the record itself
 console.log(message)
 ```
 
@@ -140,7 +141,7 @@ Entity instances remember their last match and data:
 const entity = client.Message()
 
 // First call runs the operation and stores its result
-await entity.create({ max_token: 1, message: [] })
+await entity.create({ max_tokens: 1, messages: [] })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -290,13 +291,14 @@ The `prepare()` method returns:
 | --- | --- |
 | `content` |  |
 | `id` |  |
-| `max_token` |  |
-| `message` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `model` |  |
 | `role` |  |
 | `stop_reason` |  |
 | `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stream` |  |
 | `system` |  |
 | `temperature` |  |
@@ -330,13 +332,14 @@ Create an instance: `const message = client.Message()`
 | --- | --- | --- |
 | `content` | `any[]` |  |
 | `id` | `string` |  |
-| `max_token` | `number` |  |
-| `message` | `any[]` |  |
+| `max_tokens` | `number` |  |
+| `messages` | `any[]` |  |
 | `metadata` | `Record<string, any>` |  |
 | `model` | `string` |  |
 | `role` | `string` |  |
 | `stop_reason` | `string` |  |
 | `stop_sequence` | `string` |  |
+| `stop_sequences` | `any[]` |  |
 | `stream` | `boolean` |  |
 | `system` | `string` |  |
 | `temperature` | `number` |  |
@@ -349,8 +352,8 @@ Create an instance: `const message = client.Message()`
 
 ```ts
 const message = await client.Message().create({
-  max_token: 1,
-  message: [],
+  max_tokens: 1,
+  messages: [],
 })
 ```
 
@@ -425,7 +428,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const message = client.Message()
-await message.create({ max_token: 1, message: [] })
+await message.create({ max_tokens: 1, messages: [] })
 
 // message.data() now returns the message data from the last `create`
 // message.match() returns the last match criteria

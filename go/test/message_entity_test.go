@@ -58,7 +58,7 @@ func TestMessageEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		messageRef01Data = core.ToMapAny(messageRef01DataResult)
+		messageRef01Data = core.ToMapAny(entityData(messageRef01DataResult))
 		if messageRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}

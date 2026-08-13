@@ -96,13 +96,14 @@ message = client.Message
 | --- | --- | --- | --- |
 | `content` | `Array` | No |  |
 | `id` | `String` | No |  |
-| `max_token` | `Integer` | Yes |  |
-| `message` | `Array` | Yes |  |
+| `max_tokens` | `Integer` | Yes |  |
+| `messages` | `Array` | Yes |  |
 | `metadata` | `Hash` | No |  |
 | `model` | `String` | No |  |
 | `role` | `String` | No |  |
 | `stop_reason` | `String` | No |  |
 | `stop_sequence` | `String` | No |  |
+| `stop_sequences` | `Array` | No |  |
 | `stream` | `Boolean` | No |  |
 | `system` | `String` | No |  |
 | `temperature` | `Float` | No |  |
@@ -117,13 +118,14 @@ message = client.Message
 | --- | --- |
 | `content` | - |
 | `id` | - |
-| `max_token` | - |
-| `message` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `model` | Yes |
 | `role` | - |
 | `stop_reason` | - |
 | `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stream` | - |
 | `system` | - |
 | `temperature` | - |
@@ -140,8 +142,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Message.create({
-  "max_token" => 1, # Integer
-  "message" => [], # Array
+  "max_tokens" => 1, # Integer
+  "messages" => [], # Array
 })
 ```
 

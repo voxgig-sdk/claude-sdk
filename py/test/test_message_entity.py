@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from claude_sdk.utility.voxgig_struct import voxgig_struct as vs
 from claude_sdk import ClaudeSDK
-from core import helpers
+from claude_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -44,7 +44,7 @@ class TestMessageEntity:
         message_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.message"), "message_ref01"))
 
-        message_ref01_data = helpers.to_map(message_ref01_ent.create(message_ref01_data, None))
+        message_ref01_data = helpers.to_map(runner.entity_data(message_ref01_ent.create(message_ref01_data, None)))
         assert message_ref01_data is not None
         assert message_ref01_data["id"] is not None
 

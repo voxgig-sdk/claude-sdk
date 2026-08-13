@@ -101,13 +101,14 @@ fmt.Println(message.GetName()) // "message"
 | --- | --- | --- | --- |
 | `content` | `[]any` | No |  |
 | `id` | `string` | No |  |
-| `max_token` | `int` | Yes |  |
-| `message` | `[]any` | Yes |  |
+| `max_tokens` | `int` | Yes |  |
+| `messages` | `[]any` | Yes |  |
 | `metadata` | `map[string]any` | No |  |
 | `model` | `string` | No |  |
 | `role` | `string` | No |  |
 | `stop_reason` | `string` | No |  |
 | `stop_sequence` | `string` | No |  |
+| `stop_sequences` | `[]any` | No |  |
 | `stream` | `bool` | No |  |
 | `system` | `string` | No |  |
 | `temperature` | `float64` | No |  |
@@ -122,13 +123,14 @@ fmt.Println(message.GetName()) // "message"
 | --- | --- |
 | `content` | - |
 | `id` | - |
-| `max_token` | - |
-| `message` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `model` | Yes |
 | `role` | - |
 | `stop_reason` | - |
 | `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stream` | - |
 | `system` | - |
 | `temperature` | - |
@@ -145,8 +147,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Message(nil).Create(map[string]any{
-    "max_token": 1,
-    "message": []any{},
+    "max_tokens": 1,
+    "messages": []any{},
 }, nil)
 if err != nil {
     panic(err)

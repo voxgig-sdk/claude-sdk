@@ -39,7 +39,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Message():create({ max_token = 1, message = {} })
+local created, err = client:Message():create({ max_tokens = 1, messages = {} })
 if err then error(err) end
 
 ```
@@ -51,7 +51,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local message, err = client:Message():create({ max_token = 1, message = {} })
+local message, err = client:Message():create({ max_tokens = 1, messages = {} })
 if err then error(err) end
 ```
 
@@ -109,7 +109,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Message():create({ max_token = 1, message = {} })
+local result, err = client:Message():create({ max_tokens = 1, messages = {} })
 -- result is the returned data; err is set on failure
 ```
 
@@ -217,9 +217,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local message, err = client:Message():load()
+    local message, err = client:Message():list()
     if err then error(err) end
-    -- message is the loaded record
+    -- message is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -232,13 +232,14 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | --- | --- |
 | `content` |  |
 | `id` |  |
-| `max_token` |  |
-| `message` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `model` |  |
 | `role` |  |
 | `stop_reason` |  |
 | `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stream` |  |
 | `system` |  |
 | `temperature` |  |
@@ -272,13 +273,14 @@ Create an instance: `local message = client:Message(nil)`
 | --- | --- | --- |
 | `content` | `table` |  |
 | `id` | `string` |  |
-| `max_token` | `number` |  |
-| `message` | `table` |  |
+| `max_tokens` | `number` |  |
+| `messages` | `table` |  |
 | `metadata` | `table` |  |
 | `model` | `string` |  |
 | `role` | `string` |  |
 | `stop_reason` | `string` |  |
 | `stop_sequence` | `string` |  |
+| `stop_sequences` | `table` |  |
 | `stream` | `boolean` |  |
 | `system` | `string` |  |
 | `temperature` | `number` |  |
@@ -291,8 +293,8 @@ Create an instance: `local message = client:Message(nil)`
 
 ```lua
 local message, err = client:Message():create({
-  max_token = 1, -- number
-  message = {}, -- table
+  max_tokens = 1, -- number
+  messages = {}, -- table
 })
 ```
 
@@ -374,7 +376,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local message = client:Message()
-message:create({ max_token = 1, message = {} })
+message:create({ max_tokens = 1, messages = {} })
 
 -- message:data_get() now returns the message data from the last create
 -- message:match_get() returns the last match criteria

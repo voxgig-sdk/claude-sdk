@@ -16,12 +16,12 @@ main: kit: entity: message: {
       type: "`$STRING`"
     }
     {
-      name: "max_token"
+      name: "max_tokens"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "message"
+      name: "messages"
       req: true
       type: "`$ARRAY`"
     }
@@ -55,6 +55,11 @@ main: kit: entity: message: {
       name: "stop_sequence"
       req: false
       type: "`$STRING`"
+    }
+    {
+      name: "stop_sequences"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "stream"

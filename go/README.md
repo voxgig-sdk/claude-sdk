@@ -54,7 +54,7 @@ func main() {
     })
 
     // Create a message.
-    created, err := client.Message(nil).Create(map[string]any{"max_token": 1, "message": []any{}}, nil)
+    created, err := client.Message(nil).Create(map[string]any{"max_tokens": 1, "messages": []any{}}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,7 +69,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-message, err := client.Message(nil).Create(map[string]any{"max_token": 1, "message": []any{}}, nil)
+message, err := client.Message(nil).Create(map[string]any{"max_tokens": 1, "messages": []any{}}, nil)
 if err != nil {
     // handle err
     return
@@ -139,7 +139,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 message, err := client.Message(nil).Create(
-    map[string]any{"max_token": 1, "message": []any{}}, nil,
+    map[string]any{"max_tokens": 1, "messages": []any{}}, nil,
 )
 if err != nil {
     panic(err)
@@ -265,13 +265,14 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | --- | --- |
 | `"content"` |  |
 | `"id"` |  |
-| `"max_token"` |  |
-| `"message"` |  |
+| `"max_tokens"` |  |
+| `"messages"` |  |
 | `"metadata"` |  |
 | `"model"` |  |
 | `"role"` |  |
 | `"stop_reason"` |  |
 | `"stop_sequence"` |  |
+| `"stop_sequences"` |  |
 | `"stream"` |  |
 | `"system"` |  |
 | `"temperature"` |  |
@@ -305,13 +306,14 @@ Create an instance: `message := client.Message(nil)`
 | --- | --- | --- |
 | `content` | `[]any` |  |
 | `id` | `string` |  |
-| `max_token` | `int` |  |
-| `message` | `[]any` |  |
+| `max_tokens` | `int` |  |
+| `messages` | `[]any` |  |
 | `metadata` | `map[string]any` |  |
 | `model` | `string` |  |
 | `role` | `string` |  |
 | `stop_reason` | `string` |  |
 | `stop_sequence` | `string` |  |
+| `stop_sequences` | `[]any` |  |
 | `stream` | `bool` |  |
 | `system` | `string` |  |
 | `temperature` | `float64` |  |
@@ -324,8 +326,8 @@ Create an instance: `message := client.Message(nil)`
 
 ```go
 result, err := client.Message(nil).Create(map[string]any{
-    "max_token": 1,
-    "message": []any{},
+    "max_tokens": 1,
+    "messages": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -408,7 +410,7 @@ stores the returned data and match criteria internally.
 
 ```go
 message := client.Message(nil)
-message.Create(map[string]any{"max_token": 1, "message": []any{}}, nil)
+message.Create(map[string]any{"max_tokens": 1, "messages": []any{}}, nil)
 
 // message.Data() now returns the message data from the last create
 // message.Match() returns the last match criteria

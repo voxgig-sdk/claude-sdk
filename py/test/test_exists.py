@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Claude SDK exists test
 
 import pytest
 from claude_sdk import ClaudeSDK

@@ -90,13 +90,14 @@ message = client.Message()
 | --- | --- | --- | --- |
 | `content` | `list` | No |  |
 | `id` | `str` | No |  |
-| `max_token` | `int` | Yes |  |
-| `message` | `list` | Yes |  |
+| `max_tokens` | `int` | Yes |  |
+| `messages` | `list` | Yes |  |
 | `metadata` | `dict` | No |  |
 | `model` | `str` | No |  |
 | `role` | `str` | No |  |
 | `stop_reason` | `str` | No |  |
 | `stop_sequence` | `str` | No |  |
+| `stop_sequences` | `list` | No |  |
 | `stream` | `bool` | No |  |
 | `system` | `str` | No |  |
 | `temperature` | `float` | No |  |
@@ -111,13 +112,14 @@ message = client.Message()
 | --- | --- |
 | `content` | - |
 | `id` | - |
-| `max_token` | - |
-| `message` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `model` | Yes |
 | `role` | - |
 | `stop_reason` | - |
 | `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stream` | - |
 | `system` | - |
 | `temperature` | - |
@@ -134,8 +136,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Message().create({
-    "max_token": 1,  # int
-    "message": [],  # list
+    "max_tokens": 1,  # int
+    "messages": [],  # list
 })
 ```
 

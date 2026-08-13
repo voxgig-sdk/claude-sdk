@@ -17,13 +17,14 @@ class Message
 {
     public ?array $content = null;
     public ?string $id = null;
-    public int $max_token;
-    public array $message;
+    public int $max_tokens;
+    public array $messages;
     public ?array $metadata = null;
     public ?string $model = null;
     public ?string $role = null;
     public ?string $stop_reason = null;
     public ?string $stop_sequence = null;
+    public ?array $stop_sequences = null;
     public ?bool $stream = null;
     public ?string $system = null;
     public ?float $temperature = null;
@@ -38,13 +39,14 @@ class MessageCreateData
 {
     public ?array $content = null;
     public ?string $id = null;
-    public int $max_token;
-    public array $message;
+    public int $max_tokens;
+    public array $messages;
     public ?array $metadata = null;
     public ?string $model = null;
     public ?string $role = null;
     public ?string $stop_reason = null;
     public ?string $stop_sequence = null;
+    public ?array $stop_sequences = null;
     public ?bool $stream = null;
     public ?string $system = null;
     public ?float $temperature = null;

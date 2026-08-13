@@ -24,8 +24,8 @@ support (`create`):
 ```ts
 const client = new ClaudeSDK()
 const message = await client.Message().create({
-  max_token: 1,
-  message: [],
+  max_tokens: 1,
+  messages: [],
 })
 ```
 
@@ -41,9 +41,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = ClaudeSDK.test()
-const message = await client.Message().create({ max_token: 1, message: [] })
-// message is a bare Message populated with mock data
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = ClaudeSDK.test({
+  entity: {
+    message: {
+      test01: { id: 'test01', max_tokens: 1, messages: [] },
+    },
+  },
+})
+const message = await client.Message().create({ max_tokens: 1, messages: [] })
+// message is the Message entity, populated with mock data
+// — call message.data() for the record itself
 console.log(message)
 ```
 
@@ -51,7 +60,7 @@ console.log(message)
 
 ```python
 client = ClaudeSDK.test()
-message = client.Message().create({"max_token": 1, "message": []})
+message = client.Message().create({"max_tokens": 1, "messages": []})
 print(message)
 ```
 
@@ -62,7 +71,7 @@ print(message)
 $client = ClaudeSDK::test([
     "entity" => ["message" => ["test01" => []]],
 ]);
-$message = $client->Message()->create(["max_token" => 1, "message" => []]);
+$message = $client->Message()->create(["max_tokens" => 1, "messages" => []]);
 ```
 
 ### Golang
@@ -70,7 +79,7 @@ $message = $client->Message()->create(["max_token" => 1, "message" => []]);
 ```go
 client := sdk.Test()
 result, err := client.Message(nil).Create(
-    map[string]any{"max_token": 1, "message": []any{}}, nil,
+    map[string]any{"max_tokens": 1, "messages": []any{}}, nil,
 )
 ```
 
@@ -81,14 +90,14 @@ result, err := client.Message(nil).Create(
 client = ClaudeSDK.test({
   "entity" => { "message" => { "test01" => {} } },
 })
-message = client.Message.create({ "max_token" => 1, "message" => [] })
+message = client.Message.create({ "max_tokens" => 1, "messages" => [] })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Message():create({ max_token = 1, message = {} })
+local result, err = client:Message():create({ max_tokens = 1, messages = {} })
 ```
 
 ## Packages
@@ -335,6 +344,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://platform.claude.com](https://platform.claude.com)
 

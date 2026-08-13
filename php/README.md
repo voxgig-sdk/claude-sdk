@@ -36,8 +36,8 @@ $client = new ClaudeSDK([
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Message record.
-$created = $client->Message()->create(["max_token" => 1, "message" => []]);
+// create() returns the ENTITY — call data_get() for the created Message record.
+$created = $client->Message()->create(["max_tokens" => 1, "messages" => []]);
 
 ```
 
@@ -49,7 +49,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $message = $client->Message()->create(["max_token" => 1, "message" => []]);
+    $message = $client->Message()->create(["max_tokens" => 1, "messages" => []]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -121,8 +121,9 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = ClaudeSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$message = $client->Message()->create(["max_token" => 1, "message" => []]);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$message = $client->Message()->create(["max_tokens" => 1, "messages" => []]);
 print_r($message);
 ```
 
@@ -222,7 +223,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -246,13 +247,14 @@ On error, `ok` is `false` and `$err` contains the error value.
 | --- | --- |
 | `content` |  |
 | `id` |  |
-| `max_token` |  |
-| `message` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `model` |  |
 | `role` |  |
 | `stop_reason` |  |
 | `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stream` |  |
 | `system` |  |
 | `temperature` |  |
@@ -286,13 +288,14 @@ Create an instance: `$message = $client->Message();`
 | --- | --- | --- |
 | `content` | `array` |  |
 | `id` | `string` |  |
-| `max_token` | `int` |  |
-| `message` | `array` |  |
+| `max_tokens` | `int` |  |
+| `messages` | `array` |  |
 | `metadata` | `array` |  |
 | `model` | `string` |  |
 | `role` | `string` |  |
 | `stop_reason` | `string` |  |
 | `stop_sequence` | `string` |  |
+| `stop_sequences` | `array` |  |
 | `stream` | `bool` |  |
 | `system` | `string` |  |
 | `temperature` | `float` |  |
@@ -305,8 +308,8 @@ Create an instance: `$message = $client->Message();`
 
 ```php
 $message = $client->Message()->create([
-    "max_token" => null, // int
-    "message" => null, // array
+    "max_tokens" => null, // int
+    "messages" => null, // array
 ]);
 ```
 
@@ -388,7 +391,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $message = $client->Message();
-$message->create(["max_token" => 1, "message" => []]);
+$message->create(["max_tokens" => 1, "messages" => []]);
 
 // $message->data_get() now returns the message data from the last create
 // $message->match_get() returns the last match criteria

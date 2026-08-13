@@ -119,13 +119,14 @@ const message = client.Message()
 | --- | --- | --- | --- |
 | `content` | `any[]` | No |  |
 | `id` | `string` | No |  |
-| `max_token` | `number` | Yes |  |
-| `message` | `any[]` | Yes |  |
+| `max_tokens` | `number` | Yes |  |
+| `messages` | `any[]` | Yes |  |
 | `metadata` | `Record<string, any>` | No |  |
 | `model` | `string` | No |  |
 | `role` | `string` | No |  |
 | `stop_reason` | `string` | No |  |
 | `stop_sequence` | `string` | No |  |
+| `stop_sequences` | `any[]` | No |  |
 | `stream` | `boolean` | No |  |
 | `system` | `string` | No |  |
 | `temperature` | `number` | No |  |
@@ -140,13 +141,14 @@ const message = client.Message()
 | --- | --- |
 | `content` | - |
 | `id` | - |
-| `max_token` | - |
-| `message` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `model` | Yes |
 | `role` | - |
 | `stop_reason` | - |
 | `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stream` | - |
 | `system` | - |
 | `temperature` | - |
@@ -163,8 +165,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Message().create({
-  max_token: 1,
-  message: [],
+  max_tokens: 1,
+  messages: [],
 })
 ```
 

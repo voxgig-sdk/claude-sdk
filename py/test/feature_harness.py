@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import ClaudeControl
-from core.error import ClaudeError
-from core.result import ClaudeResult
-from core.spec import ClaudeSpec
+from claude_sdk.config import make_config
+from claude_sdk.features import _make_feature
+from claude_sdk.core.control import ClaudeControl
+from claude_sdk.core.error import ClaudeError
+from claude_sdk.core.result import ClaudeResult
+from claude_sdk.core.spec import ClaudeSpec
 
 
 # True when this SDK was generated with the named feature.

@@ -9,13 +9,14 @@
 ---@class Message
 ---@field content? table
 ---@field id? string
----@field max_token number
----@field message table
+---@field max_tokens number
+---@field messages table
 ---@field metadata? table
 ---@field model? string
 ---@field role? string
 ---@field stop_reason? string
 ---@field stop_sequence? string
+---@field stop_sequences? table
 ---@field stream? boolean
 ---@field system? string
 ---@field temperature? number
@@ -27,13 +28,14 @@
 ---@class MessageCreateData
 ---@field content? table
 ---@field id? string
----@field max_token number
----@field message table
+---@field max_tokens number
+---@field messages table
 ---@field metadata? table
 ---@field model? string
 ---@field role? string
 ---@field stop_reason? string
 ---@field stop_sequence? string
+---@field stop_sequences? table
 ---@field stream? boolean
 ---@field system? string
 ---@field temperature? number
