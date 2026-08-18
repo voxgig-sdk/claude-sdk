@@ -1,6 +1,20 @@
 # Claude SDK configuration
 
 module ClaudeConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -29,42 +43,33 @@ module ClaudeConfig
         "message" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "content",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "id",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "max_tokens",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "messages",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 3,
+              "union" => {
+                "branches" => 2,
+                "count" => 1,
+                "depth" => 3,
+              },
             },
             {
-              "active" => true,
               "name" => "metadata",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "model",
               "op" => {
                 "create" => {
@@ -72,86 +77,51 @@ module ClaudeConfig
                   "type" => "`$STRING`",
                 },
               },
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "role",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "stop_reason",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "stop_sequence",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "stop_sequences",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "stream",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "system",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 11,
             },
             {
-              "active" => true,
               "name" => "temperature",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 12,
             },
             {
-              "active" => true,
               "name" => "top_k",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 13,
             },
             {
-              "active" => true,
               "name" => "top_p",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 14,
             },
             {
-              "active" => true,
               "name" => "type",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 15,
             },
             {
-              "active" => true,
               "name" => "usage",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 16,
             },
           ],
           "name" => "message",
@@ -161,7 +131,6 @@ module ClaudeConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
@@ -174,10 +143,8 @@ module ClaudeConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {

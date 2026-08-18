@@ -40,7 +40,7 @@ class ClaudeSDK
         $utility = new ClaudeUtility();
         $this->_utility = $utility;
 
-        $config = ClaudeConfig::make_config();
+        $config = ClaudeConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

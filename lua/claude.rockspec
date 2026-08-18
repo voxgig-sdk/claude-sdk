@@ -23,6 +23,7 @@ build = {
   modules = {
     ["claude_sdk"] = "claude_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

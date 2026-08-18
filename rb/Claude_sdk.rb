@@ -28,7 +28,7 @@ class ClaudeSDK
     utility = ClaudeUtility.new
     @_utility = utility
 
-    config = ClaudeConfig.make_config
+    config = ClaudeConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -1,7 +1,30 @@
 # Claude SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "Claude",
@@ -29,42 +52,33 @@ def make_config():
       "message": {
         "fields": [
           {
-            "active": True,
             "name": "content",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "id",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "max_tokens",
             "req": True,
             "type": "`$INTEGER`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "messages",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 3,
+            "union": {
+              "branches": 2,
+              "count": 1,
+              "depth": 3,
+            },
           },
           {
-            "active": True,
             "name": "metadata",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "model",
             "op": {
               "create": {
@@ -72,86 +86,51 @@ def make_config():
                 "type": "`$STRING`",
               },
             },
-            "req": False,
             "type": "`$STRING`",
-            "index$": 5,
           },
           {
-            "active": True,
             "name": "role",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 6,
           },
           {
-            "active": True,
             "name": "stop_reason",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 7,
           },
           {
-            "active": True,
             "name": "stop_sequence",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 8,
           },
           {
-            "active": True,
             "name": "stop_sequences",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 9,
           },
           {
-            "active": True,
             "name": "stream",
-            "req": False,
             "type": "`$BOOLEAN`",
-            "index$": 10,
           },
           {
-            "active": True,
             "name": "system",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 11,
           },
           {
-            "active": True,
             "name": "temperature",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 12,
           },
           {
-            "active": True,
             "name": "top_k",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 13,
           },
           {
-            "active": True,
             "name": "top_p",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 14,
           },
           {
-            "active": True,
             "name": "type",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 15,
           },
           {
-            "active": True,
             "name": "usage",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 16,
           },
         ],
         "name": "message",
@@ -161,7 +140,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "active": True,
                 "args": {},
                 "kind": "http",
                 "method": "POST",
@@ -174,10 +152,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "create",
           },
         },
         "relations": {

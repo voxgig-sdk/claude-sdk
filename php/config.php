@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class ClaudeConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -34,42 +57,33 @@ class ClaudeConfig
         'message' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'content',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'max_tokens',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'messages',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 3,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 3,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'metadata',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'op' => [
                 'create' => [
@@ -77,86 +91,51 @@ class ClaudeConfig
                   'type' => '`$STRING`',
                 ],
               ],
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'role',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'stop_reason',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'stop_sequence',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'stop_sequences',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'stream',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'system',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'temperature',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'top_k',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'top_p',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'usage',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 16,
             ],
           ],
           'name' => 'message',
@@ -166,7 +145,6 @@ class ClaudeConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -179,10 +157,8 @@ class ClaudeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [

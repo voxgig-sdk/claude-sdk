@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from claude_sdk.config import make_config
+from claude_sdk.config import shared_config
 from claude_sdk.features import _make_feature
 from claude_sdk.core.control import ClaudeControl
 from claude_sdk.core.error import ClaudeError
@@ -24,7 +24,7 @@ from claude_sdk.core.spec import ClaudeSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

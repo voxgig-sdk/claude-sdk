@@ -1,5 +1,8 @@
 -- Claude SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -28,42 +31,33 @@ local function make_config()
       ["message"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "content",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "id",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "max_tokens",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "messages",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 3,
+            ["union"] = {
+              ["branches"] = 2,
+              ["count"] = 1,
+              ["depth"] = 3,
+            },
           },
           {
-            ["active"] = true,
             ["name"] = "metadata",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "model",
             ["op"] = {
               ["create"] = {
@@ -71,86 +65,51 @@ local function make_config()
                 ["type"] = "`$STRING`",
               },
             },
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "role",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "stop_reason",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 7,
           },
           {
-            ["active"] = true,
             ["name"] = "stop_sequence",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 8,
           },
           {
-            ["active"] = true,
             ["name"] = "stop_sequences",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 9,
           },
           {
-            ["active"] = true,
             ["name"] = "stream",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 10,
           },
           {
-            ["active"] = true,
             ["name"] = "system",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 11,
           },
           {
-            ["active"] = true,
             ["name"] = "temperature",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 12,
           },
           {
-            ["active"] = true,
             ["name"] = "top_k",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 13,
           },
           {
-            ["active"] = true,
             ["name"] = "top_p",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 14,
           },
           {
-            ["active"] = true,
             ["name"] = "type",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 15,
           },
           {
-            ["active"] = true,
             ["name"] = "usage",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 16,
           },
         },
         ["name"] = "message",
@@ -160,7 +119,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
@@ -173,10 +131,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "create",
           },
         },
         ["relations"] = {

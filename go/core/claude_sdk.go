@@ -23,7 +23,7 @@ func NewClaudeSDK(options map[string]any) *ClaudeSDK {
 
 	sdk.utility = NewUtility()
 
-	config := MakeConfig()
+	config := SharedConfig()
 
 	sdk.rootctx = sdk.utility.MakeContext(map[string]any{
 		"client":  sdk,
