@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'Claude',
+        slug: "claude",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -60,20 +71,24 @@ class Config {
       "fields": [
         {
           "name": "content",
+          "short": "Array of content blocks in the response",
           "type": "`$ARRAY`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the message",
           "type": "`$STRING`"
         },
         {
           "name": "max_tokens",
           "req": true,
+          "short": "Maximum number of tokens to generate in the response",
           "type": "`$INTEGER`"
         },
         {
           "name": "messages",
           "req": true,
+          "short": "Array of message objects representing the conversation history",
           "type": "`$ARRAY`",
           "union": {
             "branches": 2,
@@ -83,6 +98,7 @@ class Config {
         },
         {
           "name": "metadata",
+          "short": "Metadata about the request",
           "type": "`$OBJECT`"
         },
         {
@@ -93,50 +109,62 @@ class Config {
               "type": "`$STRING`"
             }
           },
+          "short": "The model used to generate the response",
           "type": "`$STRING`"
         },
         {
           "name": "role",
+          "short": "The role of the response sender",
           "type": "`$STRING`"
         },
         {
           "name": "stop_reason",
+          "short": "Reason why the model stopped generating",
           "type": "`$STRING`"
         },
         {
           "name": "stop_sequence",
+          "short": "The stop sequence that caused generation to stop, if applicable",
           "type": "`$STRING`"
         },
         {
           "name": "stop_sequences",
+          "short": "Custom stop sequences to end generation",
           "type": "`$ARRAY`"
         },
         {
           "name": "stream",
+          "short": "Whether to stream the response incrementally",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "system",
+          "short": "System prompt to set the context and behavior for Claude",
           "type": "`$STRING`"
         },
         {
           "name": "temperature",
+          "short": "Sampling temperature (0.0 to 1.0).",
           "type": "`$NUMBER`"
         },
         {
           "name": "top_k",
+          "short": "Only sample from the top K options for each subsequent token",
           "type": "`$INTEGER`"
         },
         {
           "name": "top_p",
+          "short": "Nucleus sampling parameter.",
           "type": "`$NUMBER`"
         },
         {
           "name": "type",
+          "short": "Object type",
           "type": "`$STRING`"
         },
         {
           "name": "usage",
+          "short": "Token usage information",
           "type": "`$OBJECT`"
         }
       ],

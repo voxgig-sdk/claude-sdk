@@ -230,23 +230,23 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `id` |  |
-| `max_tokens` |  |
-| `messages` |  |
-| `metadata` |  |
-| `model` |  |
-| `role` |  |
-| `stop_reason` |  |
-| `stop_sequence` |  |
-| `stop_sequences` |  |
-| `stream` |  |
-| `system` |  |
-| `temperature` |  |
-| `top_k` |  |
-| `top_p` |  |
-| `type` |  |
-| `usage` |  |
+| `content` | Array of content blocks in the response |
+| `id` | Unique identifier for the message |
+| `max_tokens` | Maximum number of tokens to generate in the response |
+| `messages` | Array of message objects representing the conversation history |
+| `metadata` | Metadata about the request |
+| `model` | The model used to generate the response |
+| `role` | The role of the response sender |
+| `stop_reason` | Reason why the model stopped generating |
+| `stop_sequence` | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | Custom stop sequences to end generation |
+| `stream` | Whether to stream the response incrementally |
+| `system` | System prompt to set the context and behavior for Claude |
+| `temperature` | Sampling temperature (0.0 to 1.0). |
+| `top_k` | Only sample from the top K options for each subsequent token |
+| `top_p` | Nucleus sampling parameter. |
+| `type` | Object type |
+| `usage` | Token usage information |
 
 Operations: Create.
 
@@ -271,23 +271,23 @@ Create an instance: `local message = client:Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `table` |  |
-| `id` | `string` |  |
-| `max_tokens` | `number` |  |
-| `messages` | `table` |  |
-| `metadata` | `table` |  |
-| `model` | `string` |  |
-| `role` | `string` |  |
-| `stop_reason` | `string` |  |
-| `stop_sequence` | `string` |  |
-| `stop_sequences` | `table` |  |
-| `stream` | `boolean` |  |
-| `system` | `string` |  |
-| `temperature` | `number` |  |
-| `top_k` | `number` |  |
-| `top_p` | `number` |  |
-| `type` | `string` |  |
-| `usage` | `table` |  |
+| `content` | `table` | Array of content blocks in the response |
+| `id` | `string` | Unique identifier for the message |
+| `max_tokens` | `number` | Maximum number of tokens to generate in the response |
+| `messages` | `table` | Array of message objects representing the conversation history |
+| `metadata` | `table` | Metadata about the request |
+| `model` | `string` | The model used to generate the response |
+| `role` | `string` | The role of the response sender |
+| `stop_reason` | `string` | Reason why the model stopped generating |
+| `stop_sequence` | `string` | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | `table` | Custom stop sequences to end generation |
+| `stream` | `boolean` | Whether to stream the response incrementally |
+| `system` | `string` | System prompt to set the context and behavior for Claude |
+| `temperature` | `number` | Sampling temperature (0.0 to 1.0). |
+| `top_k` | `number` | Only sample from the top K options for each subsequent token |
+| `top_p` | `number` | Nucleus sampling parameter. |
+| `type` | `string` | Object type |
+| `usage` | `table` | Token usage information |
 
 #### Example: Create
 

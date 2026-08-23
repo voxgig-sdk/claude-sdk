@@ -93,23 +93,23 @@ $message = $client->Message();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `array` | No |  |
-| `id` | `string` | No |  |
-| `max_tokens` | `int` | Yes |  |
-| `messages` | `array` | Yes |  |
-| `metadata` | `array` | No |  |
-| `model` | `string` | No |  |
-| `role` | `string` | No |  |
-| `stop_reason` | `string` | No |  |
-| `stop_sequence` | `string` | No |  |
-| `stop_sequences` | `array` | No |  |
-| `stream` | `bool` | No |  |
-| `system` | `string` | No |  |
-| `temperature` | `float` | No |  |
-| `top_k` | `int` | No |  |
-| `top_p` | `float` | No |  |
-| `type` | `string` | No |  |
-| `usage` | `array` | No |  |
+| `content` | `array` | No | Array of content blocks in the response |
+| `id` | `string` | No | Unique identifier for the message |
+| `max_tokens` | `int` | Yes | Maximum number of tokens to generate in the response |
+| `messages` | `array` | Yes | Array of message objects representing the conversation history |
+| `metadata` | `array` | No | Metadata about the request |
+| `model` | `string` | No | The model used to generate the response |
+| `role` | `string` | No | The role of the response sender |
+| `stop_reason` | `string` | No | Reason why the model stopped generating |
+| `stop_sequence` | `string` | No | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | `array` | No | Custom stop sequences to end generation |
+| `stream` | `bool` | No | Whether to stream the response incrementally |
+| `system` | `string` | No | System prompt to set the context and behavior for Claude |
+| `temperature` | `float` | No | Sampling temperature (0.0 to 1.0). |
+| `top_k` | `int` | No | Only sample from the top K options for each subsequent token |
+| `top_p` | `float` | No | Nucleus sampling parameter. |
+| `type` | `string` | No | Object type |
+| `usage` | `array` | No | Token usage information |
 
 ### Field Usage by Operation
 

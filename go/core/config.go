@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Claude",
+			"slug": "claude",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -36,20 +39,24 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "content",
+						"short": "Array of content blocks in the response",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the message",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "max_tokens",
 						"req": true,
+						"short": "Maximum number of tokens to generate in the response",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "messages",
 						"req": true,
+						"short": "Array of message objects representing the conversation history",
 						"type": "`$ARRAY`",
 						"union": map[string]any{
 							"branches": 2,
@@ -59,6 +66,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "metadata",
+						"short": "Metadata about the request",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
@@ -69,50 +77,62 @@ func MakeConfig() map[string]any {
 								"type": "`$STRING`",
 							},
 						},
+						"short": "The model used to generate the response",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "role",
+						"short": "The role of the response sender",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "stop_reason",
+						"short": "Reason why the model stopped generating",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "stop_sequence",
+						"short": "The stop sequence that caused generation to stop, if applicable",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "stop_sequences",
+						"short": "Custom stop sequences to end generation",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "stream",
+						"short": "Whether to stream the response incrementally",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "system",
+						"short": "System prompt to set the context and behavior for Claude",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "temperature",
+						"short": "Sampling temperature (0.0 to 1.0).",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "top_k",
+						"short": "Only sample from the top K options for each subsequent token",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "top_p",
+						"short": "Nucleus sampling parameter.",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Object type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "usage",
+						"short": "Token usage information",
 						"type": "`$OBJECT`",
 					},
 				},

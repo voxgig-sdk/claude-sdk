@@ -117,23 +117,23 @@ const message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `any[]` | No |  |
-| `id` | `string` | No |  |
-| `max_tokens` | `number` | Yes |  |
-| `messages` | `any[]` | Yes |  |
-| `metadata` | `Record<string, any>` | No |  |
-| `model` | `string` | No |  |
-| `role` | `string` | No |  |
-| `stop_reason` | `string` | No |  |
-| `stop_sequence` | `string` | No |  |
-| `stop_sequences` | `any[]` | No |  |
-| `stream` | `boolean` | No |  |
-| `system` | `string` | No |  |
-| `temperature` | `number` | No |  |
-| `top_k` | `number` | No |  |
-| `top_p` | `number` | No |  |
-| `type` | `string` | No |  |
-| `usage` | `Record<string, any>` | No |  |
+| `content` | `any[]` | No | Array of content blocks in the response |
+| `id` | `string` | No | Unique identifier for the message |
+| `max_tokens` | `number` | Yes | Maximum number of tokens to generate in the response |
+| `messages` | `any[]` | Yes | Array of message objects representing the conversation history |
+| `metadata` | `Record<string, any>` | No | Metadata about the request |
+| `model` | `string` | No | The model used to generate the response |
+| `role` | `string` | No | The role of the response sender |
+| `stop_reason` | `string` | No | Reason why the model stopped generating |
+| `stop_sequence` | `string` | No | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | `any[]` | No | Custom stop sequences to end generation |
+| `stream` | `boolean` | No | Whether to stream the response incrementally |
+| `system` | `string` | No | System prompt to set the context and behavior for Claude |
+| `temperature` | `number` | No | Sampling temperature (0.0 to 1.0). |
+| `top_k` | `number` | No | Only sample from the top K options for each subsequent token |
+| `top_p` | `number` | No | Nucleus sampling parameter. |
+| `type` | `string` | No | Object type |
+| `usage` | `Record<string, any>` | No | Token usage information |
 
 ### Field Usage by Operation
 

@@ -242,23 +242,23 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `id` |  |
-| `max_tokens` |  |
-| `messages` |  |
-| `metadata` |  |
-| `model` |  |
-| `role` |  |
-| `stop_reason` |  |
-| `stop_sequence` |  |
-| `stop_sequences` |  |
-| `stream` |  |
-| `system` |  |
-| `temperature` |  |
-| `top_k` |  |
-| `top_p` |  |
-| `type` |  |
-| `usage` |  |
+| `content` | Array of content blocks in the response |
+| `id` | Unique identifier for the message |
+| `max_tokens` | Maximum number of tokens to generate in the response |
+| `messages` | Array of message objects representing the conversation history |
+| `metadata` | Metadata about the request |
+| `model` | The model used to generate the response |
+| `role` | The role of the response sender |
+| `stop_reason` | Reason why the model stopped generating |
+| `stop_sequence` | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | Custom stop sequences to end generation |
+| `stream` | Whether to stream the response incrementally |
+| `system` | System prompt to set the context and behavior for Claude |
+| `temperature` | Sampling temperature (0.0 to 1.0). |
+| `top_k` | Only sample from the top K options for each subsequent token |
+| `top_p` | Nucleus sampling parameter. |
+| `type` | Object type |
+| `usage` | Token usage information |
 
 Operations: Create.
 
@@ -283,23 +283,23 @@ Create an instance: `message = client.Message()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `list` |  |
-| `id` | `str` |  |
-| `max_tokens` | `int` |  |
-| `messages` | `list` |  |
-| `metadata` | `dict` |  |
-| `model` | `str` |  |
-| `role` | `str` |  |
-| `stop_reason` | `str` |  |
-| `stop_sequence` | `str` |  |
-| `stop_sequences` | `list` |  |
-| `stream` | `bool` |  |
-| `system` | `str` |  |
-| `temperature` | `float` |  |
-| `top_k` | `int` |  |
-| `top_p` | `float` |  |
-| `type` | `str` |  |
-| `usage` | `dict` |  |
+| `content` | `list` | Array of content blocks in the response |
+| `id` | `str` | Unique identifier for the message |
+| `max_tokens` | `int` | Maximum number of tokens to generate in the response |
+| `messages` | `list` | Array of message objects representing the conversation history |
+| `metadata` | `dict` | Metadata about the request |
+| `model` | `str` | The model used to generate the response |
+| `role` | `str` | The role of the response sender |
+| `stop_reason` | `str` | Reason why the model stopped generating |
+| `stop_sequence` | `str` | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | `list` | Custom stop sequences to end generation |
+| `stream` | `bool` | Whether to stream the response incrementally |
+| `system` | `str` | System prompt to set the context and behavior for Claude |
+| `temperature` | `float` | Sampling temperature (0.0 to 1.0). |
+| `top_k` | `int` | Only sample from the top K options for each subsequent token |
+| `top_p` | `float` | Nucleus sampling parameter. |
+| `type` | `str` | Object type |
+| `usage` | `dict` | Token usage information |
 
 #### Example: Create
 

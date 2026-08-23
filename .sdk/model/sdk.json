@@ -36,24 +36,28 @@
               "active": true,
               "name": "content",
               "req": false,
+              "short": "Array of content blocks in the response",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the message",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "max_tokens",
               "req": true,
+              "short": "Maximum number of tokens to generate in the response",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "messages",
               "req": true,
+              "short": "Array of message objects representing the conversation history",
               "type": "`$ARRAY`",
               "union": {
                 "branches": 2,
@@ -65,6 +69,7 @@
               "active": true,
               "name": "metadata",
               "req": false,
+              "short": "Metadata about the request",
               "type": "`$OBJECT`"
             },
             {
@@ -77,72 +82,84 @@
                 }
               },
               "req": false,
+              "short": "The model used to generate the response",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "role",
               "req": false,
+              "short": "The role of the response sender",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "stop_reason",
               "req": false,
+              "short": "Reason why the model stopped generating",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "stop_sequence",
               "req": false,
+              "short": "The stop sequence that caused generation to stop, if applicable",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "stop_sequences",
               "req": false,
+              "short": "Custom stop sequences to end generation",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "stream",
               "req": false,
+              "short": "Whether to stream the response incrementally",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "system",
               "req": false,
+              "short": "System prompt to set the context and behavior for Claude",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "temperature",
               "req": false,
+              "short": "Sampling temperature (0.0 to 1.0).",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "top_k",
               "req": false,
+              "short": "Only sample from the top K options for each subsequent token",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "top_p",
               "req": false,
+              "short": "Nucleus sampling parameter.",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Object type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "usage",
               "req": false,
+              "short": "Token usage information",
               "type": "`$OBJECT`"
             }
           ],

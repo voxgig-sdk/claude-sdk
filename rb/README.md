@@ -235,23 +235,23 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `id` |  |
-| `max_tokens` |  |
-| `messages` |  |
-| `metadata` |  |
-| `model` |  |
-| `role` |  |
-| `stop_reason` |  |
-| `stop_sequence` |  |
-| `stop_sequences` |  |
-| `stream` |  |
-| `system` |  |
-| `temperature` |  |
-| `top_k` |  |
-| `top_p` |  |
-| `type` |  |
-| `usage` |  |
+| `content` | Array of content blocks in the response |
+| `id` | Unique identifier for the message |
+| `max_tokens` | Maximum number of tokens to generate in the response |
+| `messages` | Array of message objects representing the conversation history |
+| `metadata` | Metadata about the request |
+| `model` | The model used to generate the response |
+| `role` | The role of the response sender |
+| `stop_reason` | Reason why the model stopped generating |
+| `stop_sequence` | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | Custom stop sequences to end generation |
+| `stream` | Whether to stream the response incrementally |
+| `system` | System prompt to set the context and behavior for Claude |
+| `temperature` | Sampling temperature (0.0 to 1.0). |
+| `top_k` | Only sample from the top K options for each subsequent token |
+| `top_p` | Nucleus sampling parameter. |
+| `type` | Object type |
+| `usage` | Token usage information |
 
 Operations: Create.
 
@@ -276,23 +276,23 @@ Create an instance: `message = client.Message`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `Array` |  |
-| `id` | `String` |  |
-| `max_tokens` | `Integer` |  |
-| `messages` | `Array` |  |
-| `metadata` | `Hash` |  |
-| `model` | `String` |  |
-| `role` | `String` |  |
-| `stop_reason` | `String` |  |
-| `stop_sequence` | `String` |  |
-| `stop_sequences` | `Array` |  |
-| `stream` | `Boolean` |  |
-| `system` | `String` |  |
-| `temperature` | `Float` |  |
-| `top_k` | `Integer` |  |
-| `top_p` | `Float` |  |
-| `type` | `String` |  |
-| `usage` | `Hash` |  |
+| `content` | `Array` | Array of content blocks in the response |
+| `id` | `String` | Unique identifier for the message |
+| `max_tokens` | `Integer` | Maximum number of tokens to generate in the response |
+| `messages` | `Array` | Array of message objects representing the conversation history |
+| `metadata` | `Hash` | Metadata about the request |
+| `model` | `String` | The model used to generate the response |
+| `role` | `String` | The role of the response sender |
+| `stop_reason` | `String` | Reason why the model stopped generating |
+| `stop_sequence` | `String` | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | `Array` | Custom stop sequences to end generation |
+| `stream` | `Boolean` | Whether to stream the response incrementally |
+| `system` | `String` | System prompt to set the context and behavior for Claude |
+| `temperature` | `Float` | Sampling temperature (0.0 to 1.0). |
+| `top_k` | `Integer` | Only sample from the top K options for each subsequent token |
+| `top_p` | `Float` | Nucleus sampling parameter. |
+| `type` | `String` | Object type |
+| `usage` | `Hash` | Token usage information |
 
 #### Example: Create
 

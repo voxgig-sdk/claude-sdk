@@ -6,7 +6,7 @@ The Golang SDK for the Claude API — an entity-oriented client using standard G
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Message(nil)` — each with the same small set of operations (`Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -263,23 +263,23 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"content"` |  |
-| `"id"` |  |
-| `"max_tokens"` |  |
-| `"messages"` |  |
-| `"metadata"` |  |
-| `"model"` |  |
-| `"role"` |  |
-| `"stop_reason"` |  |
-| `"stop_sequence"` |  |
-| `"stop_sequences"` |  |
-| `"stream"` |  |
-| `"system"` |  |
-| `"temperature"` |  |
-| `"top_k"` |  |
-| `"top_p"` |  |
-| `"type"` |  |
-| `"usage"` |  |
+| `"content"` | Array of content blocks in the response |
+| `"id"` | Unique identifier for the message |
+| `"max_tokens"` | Maximum number of tokens to generate in the response |
+| `"messages"` | Array of message objects representing the conversation history |
+| `"metadata"` | Metadata about the request |
+| `"model"` | The model used to generate the response |
+| `"role"` | The role of the response sender |
+| `"stop_reason"` | Reason why the model stopped generating |
+| `"stop_sequence"` | The stop sequence that caused generation to stop, if applicable |
+| `"stop_sequences"` | Custom stop sequences to end generation |
+| `"stream"` | Whether to stream the response incrementally |
+| `"system"` | System prompt to set the context and behavior for Claude |
+| `"temperature"` | Sampling temperature (0.0 to 1.0). |
+| `"top_k"` | Only sample from the top K options for each subsequent token |
+| `"top_p"` | Nucleus sampling parameter. |
+| `"type"` | Object type |
+| `"usage"` | Token usage information |
 
 Operations: Create.
 
@@ -304,23 +304,23 @@ Create an instance: `message := client.Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `[]any` |  |
-| `id` | `string` |  |
-| `max_tokens` | `int` |  |
-| `messages` | `[]any` |  |
-| `metadata` | `map[string]any` |  |
-| `model` | `string` |  |
-| `role` | `string` |  |
-| `stop_reason` | `string` |  |
-| `stop_sequence` | `string` |  |
-| `stop_sequences` | `[]any` |  |
-| `stream` | `bool` |  |
-| `system` | `string` |  |
-| `temperature` | `float64` |  |
-| `top_k` | `int` |  |
-| `top_p` | `float64` |  |
-| `type` | `string` |  |
-| `usage` | `map[string]any` |  |
+| `content` | `[]any` | Array of content blocks in the response |
+| `id` | `string` | Unique identifier for the message |
+| `max_tokens` | `int` | Maximum number of tokens to generate in the response |
+| `messages` | `[]any` | Array of message objects representing the conversation history |
+| `metadata` | `map[string]any` | Metadata about the request |
+| `model` | `string` | The model used to generate the response |
+| `role` | `string` | The role of the response sender |
+| `stop_reason` | `string` | Reason why the model stopped generating |
+| `stop_sequence` | `string` | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | `[]any` | Custom stop sequences to end generation |
+| `stream` | `bool` | Whether to stream the response incrementally |
+| `system` | `string` | System prompt to set the context and behavior for Claude |
+| `temperature` | `float64` | Sampling temperature (0.0 to 1.0). |
+| `top_k` | `int` | Only sample from the top K options for each subsequent token |
+| `top_p` | `float64` | Nucleus sampling parameter. |
+| `type` | `string` | Object type |
+| `usage` | `map[string]any` | Token usage information |
 
 #### Example: Create
 

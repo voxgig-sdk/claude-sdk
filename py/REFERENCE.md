@@ -88,23 +88,23 @@ message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `list` | No |  |
-| `id` | `str` | No |  |
-| `max_tokens` | `int` | Yes |  |
-| `messages` | `list` | Yes |  |
-| `metadata` | `dict` | No |  |
-| `model` | `str` | No |  |
-| `role` | `str` | No |  |
-| `stop_reason` | `str` | No |  |
-| `stop_sequence` | `str` | No |  |
-| `stop_sequences` | `list` | No |  |
-| `stream` | `bool` | No |  |
-| `system` | `str` | No |  |
-| `temperature` | `float` | No |  |
-| `top_k` | `int` | No |  |
-| `top_p` | `float` | No |  |
-| `type` | `str` | No |  |
-| `usage` | `dict` | No |  |
+| `content` | `list` | No | Array of content blocks in the response |
+| `id` | `str` | No | Unique identifier for the message |
+| `max_tokens` | `int` | Yes | Maximum number of tokens to generate in the response |
+| `messages` | `list` | Yes | Array of message objects representing the conversation history |
+| `metadata` | `dict` | No | Metadata about the request |
+| `model` | `str` | No | The model used to generate the response |
+| `role` | `str` | No | The role of the response sender |
+| `stop_reason` | `str` | No | Reason why the model stopped generating |
+| `stop_sequence` | `str` | No | The stop sequence that caused generation to stop, if applicable |
+| `stop_sequences` | `list` | No | Custom stop sequences to end generation |
+| `stream` | `bool` | No | Whether to stream the response incrementally |
+| `system` | `str` | No | System prompt to set the context and behavior for Claude |
+| `temperature` | `float` | No | Sampling temperature (0.0 to 1.0). |
+| `top_k` | `int` | No | Only sample from the top K options for each subsequent token |
+| `top_p` | `float` | No | Nucleus sampling parameter. |
+| `type` | `str` | No | Object type |
+| `usage` | `dict` | No | Token usage information |
 
 ### Field Usage by Operation
 

@@ -8,21 +8,25 @@ main: kit: entity: message: {
     {
       name: "content"
       req: false
+      short: "Array of content blocks in the response"
       type: "`$ARRAY`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the message"
       type: "`$STRING`"
     }
     {
       name: "max_tokens"
       req: true
+      short: "Maximum number of tokens to generate in the response"
       type: "`$INTEGER`"
     }
     {
       name: "messages"
       req: true
+      short: "Array of message objects representing the conversation history"
       type: "`$ARRAY`"
       union: {
         branches: 2
@@ -33,6 +37,7 @@ main: kit: entity: message: {
     {
       name: "metadata"
       req: false
+      short: "Metadata about the request"
       type: "`$OBJECT`"
     }
     {
@@ -44,61 +49,73 @@ main: kit: entity: message: {
         }
       }
       req: false
+      short: "The model used to generate the response"
       type: "`$STRING`"
     }
     {
       name: "role"
       req: false
+      short: "The role of the response sender"
       type: "`$STRING`"
     }
     {
       name: "stop_reason"
       req: false
+      short: "Reason why the model stopped generating"
       type: "`$STRING`"
     }
     {
       name: "stop_sequence"
       req: false
+      short: "The stop sequence that caused generation to stop, if applicable"
       type: "`$STRING`"
     }
     {
       name: "stop_sequences"
       req: false
+      short: "Custom stop sequences to end generation"
       type: "`$ARRAY`"
     }
     {
       name: "stream"
       req: false
+      short: "Whether to stream the response incrementally"
       type: "`$BOOLEAN`"
     }
     {
       name: "system"
       req: false
+      short: "System prompt to set the context and behavior for Claude"
       type: "`$STRING`"
     }
     {
       name: "temperature"
       req: false
+      short: "Sampling temperature (0.0 to 1.0)."
       type: "`$NUMBER`"
     }
     {
       name: "top_k"
       req: false
+      short: "Only sample from the top K options for each subsequent token"
       type: "`$INTEGER`"
     }
     {
       name: "top_p"
       req: false
+      short: "Nucleus sampling parameter."
       type: "`$NUMBER`"
     }
     {
       name: "type"
       req: false
+      short: "Object type"
       type: "`$STRING`"
     }
     {
       name: "usage"
       req: false
+      short: "Token usage information"
       type: "`$OBJECT`"
     }
   ]
