@@ -42,6 +42,7 @@ class ClaudeConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
