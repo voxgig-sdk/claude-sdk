@@ -77,7 +77,7 @@ def message_basic_setup(extra)
     "CLAUDE_TEST_MESSAGE_ENTID" => idmap,
     "CLAUDE_TEST_LIVE" => "FALSE",
     "CLAUDE_TEST_EXPLAIN" => "FALSE",
-    "CLAUDE_APIKEY" => "NONE",
+    "CLAUDE_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -88,6 +88,9 @@ def message_basic_setup(extra)
 
   if env["CLAUDE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["CLAUDE_APIKEY"],
       },

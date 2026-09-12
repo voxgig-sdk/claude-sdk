@@ -133,6 +133,10 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "message",
         ["op"] = {
           ["create"] = {
@@ -144,13 +148,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/messages",
-                ["parts"] = {
-                  "messages",
+                ["segments"] = {
+                  {
+                    ["lit"] = "messages",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "messages",
                 },
               },
             },

@@ -145,6 +145,10 @@ module ClaudeConfig
               "type" => "`$OBJECT`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "message",
           "op" => {
             "create" => {
@@ -156,14 +160,19 @@ module ClaudeConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/messages",
-                  "parts" => [
-                    "messages",
+                  "segments" => [
+                    {
+                      "lit" => "messages",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "messages",
+                  ],
                 },
               ],
             },

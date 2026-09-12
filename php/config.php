@@ -159,6 +159,10 @@ class ClaudeConfig
               'type' => '`$OBJECT`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'message',
           'op' => [
             'create' => [
@@ -170,13 +174,18 @@ class ClaudeConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/messages',
-                  'parts' => [
-                    'messages',
+                  'segments' => [
+                    [
+                      'lit' => 'messages',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'messages',
                   ],
                 ],
               ],

@@ -133,8 +133,10 @@ main: kit: entity: message: {
         {
           method: "POST"
           orig: "/messages"
-          parts: [
-            "messages"
+          segments: [
+            {
+              lit: "messages"
+            }
           ]
           transform: {
             req: "`reqdata`"
