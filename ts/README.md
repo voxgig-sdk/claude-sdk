@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { ClaudeSDK } from '@voxgig-sdk/claude'
+import { ClaudeSDK } from '@voxgig-sdk/claude-sdk'
 
 const client = new ClaudeSDK({
   apikey: process.env.CLAUDE_APIKEY,
@@ -440,7 +440,7 @@ claude/
 Import the SDK from the package root:
 
 ```ts
-import { ClaudeSDK } from '@voxgig-sdk/claude'
+import { ClaudeSDK } from '@voxgig-sdk/claude-sdk'
 ```
 
 ### Entity state

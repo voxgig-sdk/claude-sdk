@@ -108,7 +108,7 @@ local result, err = client:Message():create({ max_tokens = 1, messages = {} })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/releases) |
+| TypeScript | `@voxgig-sdk/claude-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/releases) |
 | Python | `voxgig-sdk-claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/releases) |
 | PHP | `voxgig-sdk/claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/claude-sdk/go` | `go get github.com/voxgig-sdk/claude-sdk/go@latest` |
@@ -122,7 +122,7 @@ local result, err = client:Message():create({ max_tokens = 1, messages = {} })
 ### TypeScript
 
 ```ts
-import { ClaudeSDK } from '@voxgig-sdk/claude'
+import { ClaudeSDK } from '@voxgig-sdk/claude-sdk'
 
 const client = new ClaudeSDK({
   apikey: process.env.CLAUDE_APIKEY,
