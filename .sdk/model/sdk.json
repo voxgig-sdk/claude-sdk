@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "message": {
           "active": true,
@@ -176,6 +240,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /messages",
+                    "json": "{\"operationId\":\"createMessage\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"simple\":{\"summary\":\"Simple message\",\"value\":{\"max_tokens\":1024,\"messages\":[{\"content\":\"Hello, Claude!\",\"role\":\"user\"}],\"model\":\"claude-3-5-sonnet-20241022\"}},\"withSystem\":{\"summary\":\"Message with system prompt\",\"value\":{\"max_tokens\":2048,\"messages\":[{\"content\":\"Write a Python function to calculate fibonacci numbers.\",\"role\":\"user\"}],\"model\":\"claude-3-opus-20240229\",\"system\":\"You are a helpful coding assistant.\"}}},\"schema\":{\"properties\":{\"max_tokens\":{\"description\":\"Maximum number of tokens to generate in the response\",\"example\":1024,\"maximum\":4096,\"minimum\":1,\"type\":\"integer\"},\"messages\":{\"description\":\"Array of message objects representing the conversation history\",\"items\":{\"properties\":{\"content\":{\"description\":\"The content of the message\",\"example\":\"Hello, Claude!\",\"oneOf\":[{\"type\":\"string\"},{\"items\":{\"properties\":{\"source\":{\"description\":\"Image source (for image type)\",\"properties\":{\"data\":{\"description\":\"Base64-encoded image data\",\"type\":\"string\"},\"media_type\":{\"description\":\"MIME type of the image\",\"enum\":[\"image/jpeg\",\"image/png\",\"image/gif\",\"image/webp\"],\"type\":\"string\"},\"type\":{\"description\":\"Source type\",\"enum\":[\"base64\"],\"type\":\"string\"}},\"type\":\"object\"},\"text\":{\"description\":\"Text content (for text type)\",\"type\":\"string\"},\"type\":{\"description\":\"The type of content block\",\"enum\":[\"text\",\"image\"],\"type\":\"string\"}},\"required\":[\"type\"],\"type\":\"object\"},\"type\":\"array\"}]},\"role\":{\"description\":\"The role of the message sender\",\"enum\":[\"user\",\"assistant\"],\"example\":\"user\",\"type\":\"string\"}},\"required\":[\"role\",\"content\"],\"type\":\"object\"},\"minItems\":1,\"type\":\"array\"},\"metadata\":{\"description\":\"Metadata about the request\",\"properties\":{\"user_id\":{\"description\":\"Identifier for the end user\",\"type\":\"string\"}},\"type\":\"object\"},\"model\":{\"description\":\"The model to use for generating responses\",\"enum\":[\"claude-3-5-sonnet-20241022\",\"claude-3-5-haiku-20241022\",\"claude-3-opus-20240229\",\"claude-3-sonnet-20240229\",\"claude-3-haiku-20240307\"],\"example\":\"claude-3-5-sonnet-20241022\",\"type\":\"string\"},\"stop_sequences\":{\"description\":\"Custom stop sequences to end generation\",\"example\":[\"\\n\\nHuman:\"],\"items\":{\"type\":\"string\"},\"maxItems\":4,\"type\":\"array\"},\"stream\":{\"default\":false,\"description\":\"Whether to stream the response incrementally\",\"example\":false,\"type\":\"boolean\"},\"system\":{\"description\":\"System prompt to set the context and behavior for Claude\",\"example\":\"You are a helpful assistant.\",\"type\":\"string\"},\"temperature\":{\"default\":1,\"description\":\"Sampling temperature (0.0 to 1.0). Higher values make output more random\",\"example\":0.7,\"maximum\":1,\"minimum\":0,\"type\":\"number\"},\"top_k\":{\"description\":\"Only sample from the top K options for each subsequent token\",\"example\":40,\"minimum\":0,\"type\":\"integer\"},\"top_p\":{\"description\":\"Nucleus sampling parameter. Alternative to temperature\",\"example\":0.9,\"maximum\":1,\"minimum\":0,\"type\":\"number\"}},\"required\":[\"model\",\"max_tokens\",\"messages\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"success\":{\"summary\":\"Successful message response\",\"value\":{\"content\":[{\"text\":\"Hello! How can I assist you today?\",\"type\":\"text\"}],\"id\":\"msg_01XFDUDYJgAACzvnptvVoYEL\",\"model\":\"claude-3-5-sonnet-20241022\",\"role\":\"assistant\",\"stop_reason\":\"end_turn\",\"stop_sequence\":null,\"type\":\"message\",\"usage\":{\"input_tokens\":12,\"output_tokens\":25}}}},\"schema\":{\"properties\":{\"content\":{\"description\":\"Array of content blocks in the response\",\"items\":{\"properties\":{\"text\":{\"description\":\"The text content\",\"example\":\"Hello! How can I assist you today?\",\"type\":\"string\"},\"type\":{\"description\":\"The type of content block\",\"enum\":[\"text\"],\"example\":\"text\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique identifier for the message\",\"example\":\"msg_01XFDUDYJgAACzvnptvVoYEL\",\"type\":\"string\"},\"model\":{\"description\":\"The model used to generate the response\",\"example\":\"claude-3-5-sonnet-20241022\",\"type\":\"string\"},\"role\":{\"description\":\"The role of the response sender\",\"enum\":[\"assistant\"],\"example\":\"assistant\",\"type\":\"string\"},\"stop_reason\":{\"description\":\"Reason why the model stopped generating\",\"enum\":[\"end_turn\",\"max_tokens\",\"stop_sequence\"],\"example\":\"end_turn\",\"type\":\"string\"},\"stop_sequence\":{\"description\":\"The stop sequence that caused generation to stop, if applicable\",\"example\":null,\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"Object type\",\"enum\":[\"message\"],\"example\":\"message\",\"type\":\"string\"},\"usage\":{\"description\":\"Token usage information\",\"properties\":{\"input_tokens\":{\"description\":\"Number of tokens in the input\",\"example\":12,\"type\":\"integer\"},\"output_tokens\":{\"description\":\"Number of tokens in the output\",\"example\":25,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with message completion\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid API key provided\",\"type\":\"string\"},\"type\":{\"description\":\"Error type\",\"example\":\"invalid_request_error\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":{\"description\":\"Object type\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid input parameters\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid API key provided\",\"type\":\"string\"},\"type\":{\"description\":\"Error type\",\"example\":\"invalid_request_error\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":{\"description\":\"Object type\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - Invalid or missing API key\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid API key provided\",\"type\":\"string\"},\"type\":{\"description\":\"Error type\",\"example\":\"invalid_request_error\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":{\"description\":\"Object type\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Forbidden - Insufficient permissions\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid API key provided\",\"type\":\"string\"},\"type\":{\"description\":\"Error type\",\"example\":\"invalid_request_error\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":{\"description\":\"Object type\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid API key provided\",\"type\":\"string\"},\"type\":{\"description\":\"Error type\",\"example\":\"invalid_request_error\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":{\"description\":\"Object type\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication. Obtain your API key from https://platform.claude.com/settings/keys\",\"in\":\"header\",\"name\":\"x-api-key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/messages",
@@ -199,13 +269,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -296,6 +576,102 @@
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
           "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
+          "version": "0.0.1"
         }
       },
       "flow": {
@@ -348,6 +724,48 @@
         "website": "https://anthropic.com"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -902,6 +1320,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -943,7 +1362,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

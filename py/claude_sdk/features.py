@@ -1,12 +1,18 @@
 # Claude SDK feature factory
 
 from claude_sdk.feature.base_feature import ClaudeBaseFeature
+from claude_sdk.feature.ratelimit_feature import ClaudeRatelimitFeature
+from claude_sdk.feature.retry_feature import ClaudeRetryFeature
 from claude_sdk.feature.test_feature import ClaudeTestFeature
+from claude_sdk.feature.timeout_feature import ClaudeTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: ClaudeBaseFeature(),
+    "ratelimit": lambda: ClaudeRatelimitFeature(),
+    "retry": lambda: ClaudeRetryFeature(),
     "test": lambda: ClaudeTestFeature(),
+    "timeout": lambda: ClaudeTimeoutFeature(),
 }
 
 
