@@ -108,12 +108,12 @@ local result, err = client:Message():create({ max_tokens = 1, messages = {} })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/claude-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/releases) |
-| Python | `voxgig-sdk-claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/releases) |
-| PHP | `voxgig-sdk/claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/releases) |
+| TypeScript | `@voxgig-sdk/claude-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/tags) |
+| Python | `voxgig-sdk-claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/tags) |
+| PHP | `voxgig-sdk/claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/claude-sdk/go` | `go get github.com/voxgig-sdk/claude-sdk/go@latest` |
-| Ruby | `voxgig-sdk-claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/releases) |
-| Lua | `voxgig-sdk-claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/releases) |
+| Ruby | `voxgig-sdk-claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/tags) |
+| Lua | `voxgig-sdk-claude` | publish pending — [install from git tag](https://github.com/voxgig-sdk/claude-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/claude-sdk/go-cli` | `go install github.com/voxgig-sdk/claude-sdk/go-cli/cmd/claude@latest` |
 | Go MCP server | `github.com/voxgig-sdk/claude-sdk/go-mcp` | `go get github.com/voxgig-sdk/claude-sdk/go-mcp@latest` |
 

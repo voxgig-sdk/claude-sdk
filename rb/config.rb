@@ -89,6 +89,7 @@ module ClaudeConfig
         "base" => "https://api.anthropic.com/v1",
         "auth" => {
           "prefix" => "",
+          "name" => "x-api-key",
         },
         "headers" => {
           "content-type" => "application/json",
